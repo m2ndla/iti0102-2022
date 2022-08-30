@@ -1,2 +1,3 @@
-# Kirjutan siin esimese koodirea.
+"""Kirjutan koodirea Hello world."""
+
 print("Hello world!")
