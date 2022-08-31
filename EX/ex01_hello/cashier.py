@@ -1,6 +1,4 @@
-"""
-Cha-ching!
-"""
+"""Cha-ching."""
 # Asking for user input on a number.
 amount = int(input("Enter a sum: "))
 # Determining the amount of 50c coins needed
