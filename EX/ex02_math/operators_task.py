@@ -79,16 +79,38 @@ def if_else(a: int, b: int, c: int, d: int) -> float:
     cd = c / d
     if ab == cd:
         return 0
+    elif ab > cd:
+        return ab
+    elif cd > ab:
+        return cd
 
 
 def surface(x: int, y: int) -> int:
-    """Add the missing parameters to calculate the surface of a rectangle. Calculate and return the value of the surface."""
+    """Add the missing parameters to calculate the surface of a rectangle.
+    Calculate and return the value of the surface."""
     return x * y
 
 
-def volume(x:int, y: int, z: int) -> int:
-    """Add the missing parameters to calculate the volume of a cubiod. Calculate and return the value of the volume."""
+def volume(x: int, y: int, z: int) -> int:
+    """Add the missing parameters to calculate the volume of a cuboid. Calculate and return the value of the volume."""
     return x * y * z
+
+
+def clock(days: int, hours: int, minutes: int, seconds: int) -> float:
+    """Converting parameters to minutes and returning the values."""
+    time = (days * 24 * 60) + (hours * 60) + minutes + (seconds / 60)
+    return time
+
+
+def calculate(x: int, y: int, z: int) -> float:
+    if x == 0:
+        return y + z
+    elif x == 1:
+        return y - z
+    elif x == 2:
+        return y * z
+    elif x == 3:
+        return y / z
 
 
 if __name__ == '__main__':
@@ -105,8 +127,9 @@ if __name__ == '__main__':
     print(x_is_not_y(1, 2))  # True
     print(if_else(1, 3, 5, 99))  # 3
     print(if_else(2, 1, 10, 5))  # 0
-    # print(surface(1, 2)) # 2
-    # print(volume(5, 5, 5)) # 125
-    # print(clock(0, 0, 1, 15))  # 1.25
-    # print(clock(0, 1, 5, 0))  # 65
-    # Try "calculate" here
+    print(surface(1, 2))  # 2
+    print(volume(5, 5, 5))  # 125
+    print(clock(0, 0, 1, 15))  # 1.25
+    print(clock(0, 1, 5, 0))  # 65
+    print(calculate(2, 3, 5))  # 15
+    print(calculate(0, 1, 3))  # 4
