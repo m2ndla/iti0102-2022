@@ -32,7 +32,9 @@ def school_pressure(ects: int, weeks: int) -> float:
     school_pressure(1, 0) == -1
     """
     ects_to_hours = ects * 26
-    if ects_to_hours / weeks > 168:
+    if weeks == 0:
+        return -1
+    elif ects_to_hours / weeks > 168:
         return -1
     else:
         return ects_to_hours / weeks
@@ -54,6 +56,7 @@ def add_fractions(a: int, b: int, c: int, d: int) -> str:
     add_fractions(1, 3, 1, 3) # 1/3 + 1/3 => there are many correct answers like "2/3" and "6/9"
     add_fractions(2, 5, 1, 5) # 2/5 + 1/5 => there are many correct answers like "3/5" and "15/25"
     """
-    fraction1 = str(a) + "/" + str(b)
-    fraction2 = str(c) + "/" + str(d)
-    return fraction1 + fraction2
+    common_denominator = b * d
+    numerator = (a * d) + (c * b)
+    answer = str(numerator) + "/" + str(common_denominator)
+    return answer
