@@ -86,8 +86,11 @@ def if_else(a: int, b: int, c: int, d: int) -> float:
 
 
 def surface(x: int, y: int) -> int:
-    """Add the missing parameters to calculate the surface of a rectangle.
-    Calculate and return the value of the surface."""
+    """
+    Add the missing parameters to calculate the surface of a rectangle.
+
+    Calculate and return the value of the surface.
+    """
     return x * y
 
 
