@@ -100,12 +100,13 @@ def volume(x: int, y: int, z: int) -> int:
 
 
 def clock(days: int, hours: int, minutes: int, seconds: int) -> float:
-    """Converting parameters to minutes and returning the values."""
+    """Convert parameters to minutes and return the values."""
     time = (days * 24 * 60) + (hours * 60) + minutes + (seconds / 60)
     return time
 
 
 def calculate(x: int, y: int, z: int) -> float:
+    """Calculate the values depending on the value of x."""
     if x == 0:
         return y + z
     elif x == 1:
