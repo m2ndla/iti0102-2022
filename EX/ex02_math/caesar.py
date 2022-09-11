@@ -24,12 +24,12 @@ def encode(message: str, shift: int) -> str:
     :param shift: shift for encoding
     :return: encoded message
     """
+    answer = ""
     for character in message:
-        answer = ""
         answer += chr((ord(character) + shift - 97) % 26 + 97)
         if character.isalpha():
             answer += " "
-        return answer
+    return answer
 
 
 if __name__ == '__main__':
