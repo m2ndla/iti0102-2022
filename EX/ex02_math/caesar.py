@@ -26,9 +26,10 @@ def encode(message: str, shift: int) -> str:
     """
     answer = ""
     for character in message:
-        answer += chr((ord(character) + shift - 97) % 26 + 97)
         if character.isalpha():
-            answer += " "
+            answer += chr((ord(character) + shift - 97) % 26 + 97)
+        else:
+            answer += character
     return answer
 
 
