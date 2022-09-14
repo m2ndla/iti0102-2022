@@ -55,7 +55,7 @@ def the_first_control_number_algorithm(text: str) -> str:
     if control_algorithm >= 10:
         return "Needs the second algorithm!"
     if control_algorithm != int(id_code[10]):
-        return "Needs the second algorithm!"
+        return "Incorrect ID code!"
 
 
 if __name__ == '__main__':
