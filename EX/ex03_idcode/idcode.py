@@ -50,11 +50,11 @@ def the_first_control_number_algorithm(text: str) -> str:
     control_algorithm = (int(id_code[0]) * 1 + int(id_code[1]) * 2 + int(id_code[2]) * 3 + int(id_code[3]) * 4 +
                          int(id_code[4]) * 5 + int(id_code[5]) * 6 + int(id_code[6]) * 7 + int(id_code[7]) * 8 +
                          int(id_code[8]) * 9 + int(id_code[9]) * 1) % 11
-    if control_algorithm == int(id_code[10]) & control_algorithm < 10:
+    if control_algorithm == int(id_code[10]) and control_algorithm < 10:
         return id_code
     if control_algorithm >= 10:
         return "Needs the second algorithm!"
-    if control_algorithm != int(id_code[10]):
+    elif control_algorithm != int(id_code[10]):
         return "Incorrect ID code!"
 
 
@@ -72,3 +72,4 @@ if __name__ == '__main__':
     print(the_first_control_number_algorithm("50412057633"))  # -> "50412057633"
     print(the_first_control_number_algorithm("Peeter's ID is euf50weird2fs0fsk51ef6t0s2yr7fyf4"))  # -> "Needs
     # the second algorithm!"
+    print(the_first_control_number_algorithm("40103148646"))  # incorrect code?
