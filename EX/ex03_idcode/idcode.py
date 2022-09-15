@@ -52,7 +52,7 @@ def the_first_control_number_algorithm(text: str) -> str:
                          int(id_code[8]) * 9 + int(id_code[9]) * 1) % 11
     if control_algorithm == int(id_code[10]) and control_algorithm < 10:
         return id_code
-    if control_algorithm >= 10:
+    elif control_algorithm >= 10:
         return "Needs the second algorithm!"
     elif control_algorithm != int(id_code[10]):
         return "Incorrect ID code!"
@@ -219,7 +219,7 @@ if __name__ == '__main__':
     print(get_birth_place(273))  # -> "Tartu"
     print(get_birth_place(220))  # -> "Tallinn"
 
-"""EX03 ID code part4."""
+"""EX03 ID code part 4."""
 
 
 def is_valid_control_number(id_code: str) -> bool:
@@ -278,7 +278,14 @@ def is_id_valid(id_code: str) -> bool:
 def get_full_date(gender_number: int, day_number: int, month_number: int, year_number: int) -> str:
     """Get date in dd.mm.yyyy format."""
     full_year = get_full_year(gender_number, year_number)
-    full_date = str(day_number) + "." + str(month_number) + "." + str(full_year)
+    if day_number < 10:
+        full_date = "0" + str(day_number) + "." + str(month_number) + "." + str(full_year)
+    if month_number < 10:
+        full_date = str(day_number) + "." + "0" + str(month_number) + "." + str(full_year)
+    if day_number < 10 and month_number < 10:
+        full_date = "0" + str(day_number) + "." + "0" + str(month_number) + "." + str(full_year)
+    if day_number > 10 and month_number > 10:
+        full_date = str(day_number) + "." + str(month_number) + "." + str(full_year)
     if is_valid_gender_number(gender_number):
         if is_valid_day_number(gender_number, year_number, month_number, day_number):
             return full_date
@@ -294,7 +301,7 @@ def get_data_from_id(id_code: str) -> str:
     if is_id_valid(id_code):
         return "This is a " + get_gender(gender_number) + " born on " + get_full_date(gender_number, day_number, month_number, year_number) + " in " + get_birth_place(birth_number) + "."
     if not is_id_valid(id_code):
-        return "Given invalid ID code!"
+        return "Given invalid ID code!" +
 
 
 if __name__ == '__main__':
