@@ -72,4 +72,81 @@ if __name__ == '__main__':
     print(the_first_control_number_algorithm("50412057633"))  # -> "50412057633"
     print(the_first_control_number_algorithm("Peeter's ID is euf50weird2fs0fsk51ef6t0s2yr7fyf4"))  # -> "Needs
     # the second algorithm!"
-    print(the_first_control_number_algorithm("40103148646"))  # incorrect code?
+
+"""EX03 ID code."""
+
+
+def is_valid_gender_number(gender_number: int) -> bool:
+    """Check if given value is a valid number for gender."""
+    if gender_number == 0:
+        return False
+    elif gender_number > 6:
+        return False
+    elif gender_number < 1:
+        return False
+    else:
+        return True
+
+
+def get_gender(gender_ident: int) -> str:
+    """Determine the gender from the input."""
+    if gender_ident == 1 or gender_ident == 3 or gender_ident == 5:
+        return "male"
+    if gender_ident == 2 or gender_ident == 4 or gender_ident == 6:
+        return "female"
+
+
+def is_valid_year_number(year_number: int) -> bool:
+    """Check if given value is correct for year number in ID code."""
+    if year_number > 99:
+        return False
+    if year_number < 1:
+        return False
+    else:
+        return True
+
+
+def is_valid_month_number(month_number: int) -> bool:
+    """Check if given value is correct for month number in ID code."""
+    if month_number > 12:
+        return False
+    if month_number < 1:
+        return False
+    else:
+        return True
+
+
+def is_valid_birth_number(birth_number: int) -> bool:
+    """Check if given value is correct for birth number in ID code."""
+    if birth_number > 999:
+        return False
+    if birth_number < 1:
+        return False
+    else:
+        return True
+
+
+if __name__ == '__main__':
+    print("\nGender number:")
+    for i in range(9):
+        print(f"{i} {is_valid_gender_number(i)}")
+        # 0 -> False
+        # 1...6 -> True
+        # 7...8 -> False
+
+    print("\nGet gender:")
+    print(get_gender(2))  # -> "female"
+    print(get_gender(5))  # -> "male"
+
+    print("\nYear number:")
+    print(is_valid_year_number(100))  # -> False
+    print(is_valid_year_number(50))  # -> True
+
+    print("\nMonth number:")
+    print(is_valid_month_number(2))  # -> True
+    print(is_valid_month_number(15))  # -> False
+
+    print("\nBorn order number:")
+    print(is_valid_birth_number(0))  # -> False
+    print(is_valid_birth_number(1))  # -> True
+    print(is_valid_birth_number(850))  # -> True
