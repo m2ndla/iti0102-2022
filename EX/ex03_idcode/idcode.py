@@ -2,9 +2,8 @@
 
 
 def find_id_code(text: str) -> str:
+
     """
-
-
     Given string may include any number of numbers, characters and other symbols mixed together.
     The numbers of ID-code may be between other symbols - they must be found and concatenated.
     ID-code contains of exactly 11 numbers. If there are not enough numbers, return 'Not enough numbers!',
@@ -47,9 +46,9 @@ def the_first_control_number_algorithm(text: str) -> str:
     id_code = (''.join(filter(str.isdigit, text)))
     if len(id_code) != 11:
         return "Incorrect ID code!"
-    control_algorithm = (int(id_code[0]) * 1 + int(id_code[1]) * 2 + int(id_code[2]) * 3 + int(id_code[3]) * 4 +
-                         int(id_code[4]) * 5 + int(id_code[5]) * 6 + int(id_code[6]) * 7 + int(id_code[7]) * 8 +
-                         int(id_code[8]) * 9 + int(id_code[9]) * 1) % 11
+    control_algorithm = (int(id_code[0]) * 1 + int(id_code[1]) * 2 + int(id_code[2]) * 3 + int(id_code[3]) * 4
+                         + int(id_code[4]) * 5 + int(id_code[5]) * 6 + int(id_code[6]) * 7 + int(id_code[7]) * 8
+                         + int(id_code[8]) * 9 + int(id_code[9]) * 1) % 11
     if control_algorithm == int(id_code[10]) and control_algorithm < 10:
         return id_code
     if control_algorithm >= 10:
