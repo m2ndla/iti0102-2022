@@ -100,7 +100,7 @@ def is_valid_year_number(year_number: int) -> bool:
     """Check if given value is correct for year number in ID code."""
     if year_number > 99:
         return False
-    elif year_number < 1:
+    elif year_number < 0:
         return False
     else:
         return True
