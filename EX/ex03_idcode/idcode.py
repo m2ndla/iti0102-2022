@@ -2,8 +2,9 @@
 
 
 def find_id_code(text: str) -> str:
-
     """
+    Return the ID code from the input and determine if it is valid.
+
     Given string may include any number of numbers, characters and other symbols mixed together.
     The numbers of ID-code may be between other symbols - they must be found and concatenated.
     ID-code contains of exactly 11 numbers. If there are not enough numbers, return 'Not enough numbers!',
