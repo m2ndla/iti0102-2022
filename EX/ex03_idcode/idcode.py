@@ -199,7 +199,7 @@ def get_birth_place(birth_number: int) -> str:
             return "Pärnu"
         elif 471 <= birth_number <= 710:
             return "Tallinn"
-        elif 711 <= birth_number <= 990:
+        elif 711 <= birth_number <= 999:
             return "undefined"
 
 
