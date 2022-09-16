@@ -47,9 +47,9 @@ def the_first_control_number_algorithm(text: str) -> str:
     id_code = (''.join(filter(str.isdigit, text)))
     if len(id_code) != 11:
         return "Incorrect ID code!"
-    control_algorithm = (int(id_code[0]) * 1 + int(id_code[1]) * 2 + int(id_code[2]) * 3 + int(id_code[3]) * 4 +
-                         int(id_code[4]) * 5 + int(id_code[5]) * 6 + int(id_code[6]) * 7 + int(id_code[7]) * 8 +
-                         int(id_code[8]) * 9 + int(id_code[9]) * 1) % 11
+    control_algorithm = (int(id_code[0]) * 1 + int(id_code[1]) * 2 + int(id_code[2]) * 3 + int(id_code[3]) * 4
+                         + int(id_code[4]) * 5 + int(id_code[5]) * 6 + int(id_code[6]) * 7 + int(id_code[7]) * 8
+                         + int(id_code[8]) * 9 + int(id_code[9]) * 1) % 11
     if control_algorithm == int(id_code[10]) and control_algorithm < 10:
         return id_code
     elif control_algorithm >= 10:
@@ -227,9 +227,9 @@ def is_valid_control_number(id_code: str) -> bool:
     if the_first_control_number_algorithm(id_code):
         return True
     if not the_first_control_number_algorithm(id_code):
-        second_algorithm = (int(id_code[0]) * 3 + int(id_code[1]) * 4 + int(id_code[2]) * 5 + int(id_code[3]) * 6 +
-                            int(id_code[4]) * 7 + int(id_code[5]) * 8 + int(id_code[6]) * 9 + int(id_code[7]) * 1 +
-                            int(id_code[8]) * 2 + int(id_code[9]) * 3) % 11
+        second_algorithm = (int(id_code[0]) * 3 + int(id_code[1]) * 4 + int(id_code[2]) * 5 + int(id_code[3]) * 6
+                            + int(id_code[4]) * 7 + int(id_code[5]) * 8 + int(id_code[6]) * 9 + int(id_code[7]) * 1
+                            + int(id_code[8]) * 2 + int(id_code[9]) * 3) % 11
         if second_algorithm == int(id_code[10]):
             return True
         if second_algorithm != int(id_code[10]):
@@ -241,21 +241,24 @@ def is_valid_day_number(gender_number: int, year_number: int, month_number: int,
     full_year = get_full_year(gender_number, year_number)
     if month_number == 2:
         if is_leap_year(full_year):
-            if day_number > 29:
-                return False
+            if 1 < day_number > 29:
+                return True
         if not is_leap_year(full_year):
-            if day_number > 28:
-                return False
-    if month_number == 1 or 3 or 5 or 7 or 8 or 10 or 12:
-        if day_number > 31:
-            return False
+            if 1 < day_number > 28:
+                return True
+    if month_number == 1 or month_number == 3 or month_number == 5 or month_number == 7 or month_number == 8:
+        if 1 < day_number > 31:
+            return True
+    if month_number == 10 or month_number == 12:
+        if 1 < day_number > 31:
+            return True
     if month_number == 4 or 6 or 9 or 11:
-        if day_number > 30:
-            return False
+        if 1 < day_number > 30:
+            return True
     if month_number > 12:
         return False
     else:
-        return True
+        return False
 
 
 def is_id_valid(id_code: str) -> bool:
