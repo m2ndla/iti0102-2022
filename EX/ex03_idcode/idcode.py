@@ -278,6 +278,7 @@ def is_id_valid(id_code: str) -> bool:
 def get_full_date(gender_number: int, day_number: int, month_number: int, year_number: int) -> str:
     """Get date in dd.mm.yyyy format."""
     full_year = get_full_year(gender_number, year_number)
+    full_date = ""
     if day_number < 10:
         full_date = "0" + str(day_number) + "." + str(month_number) + "." + str(full_year)
     if month_number < 10:
@@ -298,10 +299,13 @@ def get_data_from_id(id_code: str) -> str:
     month_number = int(id_code[3] + id_code[4])
     day_number = int(id_code[5] + id_code[6])
     birth_number = int(id_code[7] + id_code[8] + id_code[9])
+    gender = get_gender(gender_number)
+    date = get_full_date(gender_number, day_number, month_number, year_number)
+    place = get_birth_place(birth_number)
     if is_id_valid(id_code):
-        return "This is a " + get_gender(gender_number) + " born on " + get_full_date(gender_number, day_number, month_number, year_number) + " in " + get_birth_place(birth_number) + "."
+        return "This is a " + gender + " born on " + date + " in " + place + "."
     if not is_id_valid(id_code):
-        return "Given invalid ID code!" +
+        return "Given invalid ID code!"
 
 
 if __name__ == '__main__':
