@@ -14,7 +14,7 @@ def find_id_code(text: str) -> str:
     :param text: string
     :return: string
     """
-    id_code = (''.join(filter(str.isdigit, text)))
+    id_code = (''.join(filter(str.isdigit, text)))  # filtering only digits out of the string
     if len(id_code) == 11:
         return id_code
     elif len(id_code) > 11:
@@ -44,9 +44,10 @@ def the_first_control_number_algorithm(text: str) -> str:
     :param text: string
     :return: string
     """
-    id_code = (''.join(filter(str.isdigit, text)))
+    id_code = (''.join(filter(str.isdigit, text)))  # filtering only digits out of the string
     if len(id_code) != 11:
         return "Incorrect ID code!"
+    # multiplying each digit with its number and using modulo to get the left over value
     control_algorithm = (int(id_code[0]) * 1 + int(id_code[1]) * 2 + int(id_code[2]) * 3 + int(id_code[3]) * 4
                          + int(id_code[4]) * 5 + int(id_code[5]) * 6 + int(id_code[6]) * 7 + int(id_code[7]) * 8
                          + int(id_code[8]) * 9 + int(id_code[9]) * 1) % 11
@@ -220,9 +221,10 @@ if __name__ == '__main__':
 
 def is_valid_control_number(id_code: str) -> bool:
     """Check if given value is correct for control number in ID code."""
-    code_numbers_only = (''.join(filter(str.isdigit, id_code)))
-    if the_first_control_number_algorithm(code_numbers_only) == id_code:
+    code_numbers_only = (''.join(filter(str.isdigit, id_code)))  # filtering only digits out of the string
+    if the_first_control_number_algorithm(code_numbers_only) == id_code:  # checking if first algorithm works
         return True
+    # if first algorithm recommends using second algorithm, then it repeats the first algorithm with different digits
     if the_first_control_number_algorithm(code_numbers_only) == "Needs the second algorithm!":
         second_algorithm = (int(code_numbers_only[0]) * 3 + int(code_numbers_only[1]) * 4
                             + int(code_numbers_only[2]) * 5 + int(code_numbers_only[3]) * 6
@@ -242,7 +244,7 @@ def is_valid_control_number(id_code: str) -> bool:
 def is_valid_day_number(gender_number: int, year_number: int, month_number: int, day_number: int) -> bool:
     """Check if given value is correct for day number in ID code."""
     full_year = get_full_year(gender_number, year_number)
-    if month_number == 2:
+    if month_number == 2:  # checking for february
         if is_leap_year(full_year):
             return 1 <= day_number <= 29
         if not is_leap_year(full_year):
@@ -253,14 +255,14 @@ def is_valid_day_number(gender_number: int, year_number: int, month_number: int,
        month_number == 7 or \
        month_number == 8 or \
        month_number == 10 or \
-       month_number == 12:
+       month_number == 12:  # checking for months with 31 days
         return 1 <= day_number <= 31
     if month_number == 4 or \
        month_number == 6 or \
        month_number == 9 or \
-       month_number == 11:
+       month_number == 11:  # checking for months with 30 days
         return 1 <= day_number <= 30
-    if month_number > 12:
+    if month_number > 12:  # excluding month numbers over 12
         return False
     else:
         return False
@@ -268,9 +270,10 @@ def is_valid_day_number(gender_number: int, year_number: int, month_number: int,
 
 def is_id_valid(id_code: str) -> bool:
     """Check if given ID code is valid and return the result (True or False)."""
-    code_numbers_only = (''.join(filter(str.isdigit, id_code)))
-    if len(code_numbers_only) != 11:
+    code_numbers_only = (''.join(filter(str.isdigit, id_code)))  # filtering only digits out of the string
+    if len(code_numbers_only) != 11:  # checking if the length of the id code is 11 digits
         return False
+    # making variables for digit(s)
     gender_number = int(code_numbers_only[0])
     year_number = int(code_numbers_only[1] + code_numbers_only[2])
     month_number = int(code_numbers_only[3] + code_numbers_only[4])
@@ -295,6 +298,8 @@ def get_full_date(gender_number: int, day_number: int, month_number: int, year_n
     """Get date in dd.mm.yyyy format."""
     full_year = get_full_year(gender_number, year_number)
     full_date = ""
+    # if any value is a single digit, then this adds a 0 in front
+    # of the single digit and returns the date in dd.mm.yyyy format
     if day_number < 10:
         full_date = "0" + str(day_number) + "." + str(month_number) + "." + str(full_year)
     if month_number < 10:
@@ -310,9 +315,10 @@ def get_full_date(gender_number: int, day_number: int, month_number: int, year_n
 
 def get_data_from_id(id_code: str) -> str:
     """Get possible information about the person."""
-    code_numbers_only = (''.join(filter(str.isdigit, id_code)))
+    code_numbers_only = (''.join(filter(str.isdigit, id_code)))  # filtering only digits out of the string
     if len(code_numbers_only) != 11:
         return "Given invalid ID code!"
+    # making variables for digits and functions
     gender_number = int(code_numbers_only[0])
     year_number = int(code_numbers_only[1] + code_numbers_only[2])
     month_number = int(code_numbers_only[3] + code_numbers_only[4])
