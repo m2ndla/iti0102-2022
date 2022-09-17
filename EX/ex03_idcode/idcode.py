@@ -224,7 +224,7 @@ if __name__ == '__main__':
 
 def is_valid_control_number(id_code: str) -> bool:
     """Check if given value is correct for control number in ID code."""
-    code_numbers_only = (''.join(filter(str.isdigit, id_code)))
+    code_numbers_only = find_id_code(id_code)
     if the_first_control_number_algorithm(code_numbers_only) == id_code:
         return True
     if the_first_control_number_algorithm(code_numbers_only) == "Needs the second algorithm!":
@@ -311,8 +311,6 @@ def get_full_date(gender_number: int, day_number: int, month_number: int, year_n
 def get_data_from_id(id_code: str) -> str:
     """Get possible information about the person."""
     code_numbers_only = find_id_code(id_code)
-    if code_numbers_only == str.isdigit(code_numbers_only):
-        return "Given invalid ID code!"
     gender_number = int(code_numbers_only[0])
     year_number = int(code_numbers_only[1] + code_numbers_only[2])
     month_number = int(code_numbers_only[3] + code_numbers_only[4])
