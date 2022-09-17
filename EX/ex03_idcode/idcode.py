@@ -224,16 +224,20 @@ if __name__ == '__main__':
 
 def is_valid_control_number(id_code: str) -> bool:
     """Check if given value is correct for control number in ID code."""
-    if the_first_control_number_algorithm(id_code):
+    if the_first_control_number_algorithm(id_code) == id_code:
         return True
-    if not the_first_control_number_algorithm(id_code):
+    if the_first_control_number_algorithm(id_code) == "Needs the second algorithm!":
         second_algorithm = (int(id_code[0]) * 3 + int(id_code[1]) * 4 + int(id_code[2]) * 5 + int(id_code[3]) * 6
                             + int(id_code[4]) * 7 + int(id_code[5]) * 8 + int(id_code[6]) * 9 + int(id_code[7]) * 1
                             + int(id_code[8]) * 2 + int(id_code[9]) * 3) % 11
+        if second_algorithm == 10 and int(id_code[10]) == 0:
+            return True
         if second_algorithm == int(id_code[10]):
             return True
         if second_algorithm != int(id_code[10]):
             return False
+    if the_first_control_number_algorithm(id_code) == "Incorrect ID code!":
+        return False
 
 
 def is_valid_day_number(gender_number: int, year_number: int, month_number: int, day_number: int) -> bool:
@@ -241,19 +245,19 @@ def is_valid_day_number(gender_number: int, year_number: int, month_number: int,
     full_year = get_full_year(gender_number, year_number)
     if month_number == 2:
         if is_leap_year(full_year):
-            if 1 < day_number > 29:
+            if 1 <= day_number <= 29:
                 return True
         if not is_leap_year(full_year):
-            if 1 < day_number > 28:
+            if 1 <= day_number <= 28:
                 return True
     if month_number == 1 or month_number == 3 or month_number == 5 or month_number == 7 or month_number == 8:
-        if 1 < day_number > 31:
+        if 1 <= day_number <= 31:
             return True
     if month_number == 10 or month_number == 12:
-        if 1 < day_number > 31:
+        if 1 <= day_number <= 31:
             return True
-    if month_number == 4 or 6 or 9 or 11:
-        if 1 < day_number > 30:
+    if month_number == 4 or month_number == 6 or month_number == 9 or month_number == 11:
+        if 1 <= day_number <= 30:
             return True
     if month_number > 12:
         return False
@@ -268,12 +272,17 @@ def is_id_valid(id_code: str) -> bool:
     month_number = int(id_code[3] + id_code[4])
     day_number = int(id_code[5] + id_code[6])
     birth_number = int(id_code[7] + id_code[8] + id_code[9])
-    control_number = id_code[10]
     if is_valid_gender_number(gender_number):
         if is_valid_day_number(gender_number, year_number, month_number, day_number):
             if is_valid_birth_number(birth_number):
-                if is_valid_control_number(control_number):
+                if is_valid_control_number(id_code):
                     return True
+                else:
+                    return False
+            else:
+                return False
+        else:
+            return False
     else:
         return False
 
@@ -307,7 +316,7 @@ def get_data_from_id(id_code: str) -> str:
     place = get_birth_place(birth_number)
     if is_id_valid(id_code):
         return "This is a " + gender + " born on " + date + " in " + place + "."
-    if not is_id_valid(id_code):
+    else:
         return "Given invalid ID code!"
 
 
