@@ -311,6 +311,8 @@ def get_full_date(gender_number: int, day_number: int, month_number: int, year_n
 def get_data_from_id(id_code: str) -> str:
     """Get possible information about the person."""
     code_numbers_only = (''.join(filter(str.isdigit, id_code)))
+    if len(code_numbers_only) != 11:
+        return "Given invalid ID code!"
     gender_number = int(code_numbers_only[0])
     year_number = int(code_numbers_only[1] + code_numbers_only[2])
     month_number = int(code_numbers_only[3] + code_numbers_only[4])
@@ -351,6 +353,6 @@ if __name__ == '__main__':
     print(get_data_from_id("49808270244"))  # -> "This is a female born on 27.08.1998 in Tallinn."
     print(get_data_from_id("60109200187"))  # -> "Given invalid ID code!"
 
-    # print("\nTest now your own ID code:")
-    # personal_id = input()  # type your own id in command prompt
-    # print(is_id_valid(personal_id))  # -> True
+    print("\nTest now your own ID code:")
+    personal_id = input()  # type your own id in command prompt
+    print(is_id_valid(personal_id))  # -> True
