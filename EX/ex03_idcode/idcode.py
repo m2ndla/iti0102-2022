@@ -224,12 +224,15 @@ if __name__ == '__main__':
 
 def is_valid_control_number(id_code: str) -> bool:
     """Check if given value is correct for control number in ID code."""
-    if the_first_control_number_algorithm(id_code) == id_code:
+    code_numbers_only = (''.join(filter(str.isdigit, id_code)))
+    if the_first_control_number_algorithm(code_numbers_only) == id_code:
         return True
-    if the_first_control_number_algorithm(id_code) == "Needs the second algorithm!":
-        second_algorithm = (int(id_code[0]) * 3 + int(id_code[1]) * 4 + int(id_code[2]) * 5 + int(id_code[3]) * 6
-                            + int(id_code[4]) * 7 + int(id_code[5]) * 8 + int(id_code[6]) * 9 + int(id_code[7]) * 1
-                            + int(id_code[8]) * 2 + int(id_code[9]) * 3) % 11
+    if the_first_control_number_algorithm(code_numbers_only) == "Needs the second algorithm!":
+        second_algorithm = (int(code_numbers_only[0]) * 3 + int(code_numbers_only[1]) * 4
+                            + int(code_numbers_only[2]) * 5 + int(code_numbers_only[3]) * 6
+                            + int(code_numbers_only[4]) * 7 + int(code_numbers_only[5]) * 8
+                            + int(code_numbers_only[6]) * 9 + int(code_numbers_only[7]) * 1
+                            + int(code_numbers_only[8]) * 2 + int(code_numbers_only[9]) * 3) % 11
         if second_algorithm == 10 and int(id_code[10]) == 0:
             return True
         if second_algorithm == int(id_code[10]):
@@ -267,15 +270,16 @@ def is_valid_day_number(gender_number: int, year_number: int, month_number: int,
 
 def is_id_valid(id_code: str) -> bool:
     """Check if given ID code is valid and return the result (True or False)."""
-    gender_number = int(id_code[0])
-    year_number = int(id_code[1] + id_code[2])
-    month_number = int(id_code[3] + id_code[4])
-    day_number = int(id_code[5] + id_code[6])
-    birth_number = int(id_code[7] + id_code[8] + id_code[9])
+    code_numbers_only = (''.join(filter(str.isdigit, id_code)))
+    gender_number = int(code_numbers_only[0])
+    year_number = int(code_numbers_only[1] + code_numbers_only[2])
+    month_number = int(code_numbers_only[3] + code_numbers_only[4])
+    day_number = int(code_numbers_only[5] + code_numbers_only[6])
+    birth_number = int(code_numbers_only[7] + code_numbers_only[8] + code_numbers_only[9])
     if is_valid_gender_number(gender_number):
         if is_valid_day_number(gender_number, year_number, month_number, day_number):
             if is_valid_birth_number(birth_number):
-                if is_valid_control_number(id_code):
+                if is_valid_control_number(code_numbers_only):
                     return True
                 else:
                     return False
@@ -306,15 +310,16 @@ def get_full_date(gender_number: int, day_number: int, month_number: int, year_n
 
 def get_data_from_id(id_code: str) -> str:
     """Get possible information about the person."""
-    gender_number = int(id_code[0])
-    year_number = int(id_code[1] + id_code[2])
-    month_number = int(id_code[3] + id_code[4])
-    day_number = int(id_code[5] + id_code[6])
-    birth_number = int(id_code[7] + id_code[8] + id_code[9])
+    code_numbers_only = (''.join(filter(str.isdigit, id_code)))
+    gender_number = int(code_numbers_only[0])
+    year_number = int(code_numbers_only[1] + code_numbers_only[2])
+    month_number = int(code_numbers_only[3] + code_numbers_only[4])
+    day_number = int(code_numbers_only[5] + code_numbers_only[6])
+    birth_number = int(code_numbers_only[7] + code_numbers_only[8] + code_numbers_only[9])
     gender = get_gender(gender_number)
     date = get_full_date(gender_number, day_number, month_number, year_number)
     place = get_birth_place(birth_number)
-    if is_id_valid(id_code):
+    if is_id_valid(code_numbers_only):
         return "This is a " + gender + " born on " + date + " in " + place + "."
     else:
         return "Given invalid ID code!"
