@@ -303,7 +303,7 @@ def get_full_date(gender_number: int, day_number: int, month_number: int, year_n
         full_date = str(day_number) + "." + "0" + str(month_number) + "." + str(full_year)
     if day_number < 10 and month_number < 10:
         full_date = "0" + str(day_number) + "." + "0" + str(month_number) + "." + str(full_year)
-    if day_number > 10 and month_number > 10:
+    if day_number >= 10 and month_number >= 10:
         full_date = str(day_number) + "." + str(month_number) + "." + str(full_year)
     if is_valid_gender_number(gender_number):
         if is_valid_day_number(gender_number, year_number, month_number, day_number):
