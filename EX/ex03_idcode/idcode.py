@@ -244,11 +244,9 @@ def is_valid_day_number(gender_number: int, year_number: int, month_number: int,
     full_year = get_full_year(gender_number, year_number)
     if month_number == 2:
         if is_leap_year(full_year):
-            if 1 <= day_number <= 29:
-                return True
+            return 1 <= day_number <= 29
         if not is_leap_year(full_year):
-            if 1 <= day_number <= 28:
-                return True
+            return 1 <= day_number <= 28
     if month_number == 1 or \
        month_number == 3 or \
        month_number == 5 or \
@@ -256,14 +254,12 @@ def is_valid_day_number(gender_number: int, year_number: int, month_number: int,
        month_number == 8 or \
        month_number == 10 or \
        month_number == 12:
-        if 1 <= day_number <= 31:
-            return True
+        return 1 <= day_number <= 31
     if month_number == 4 or \
        month_number == 6 or \
        month_number == 9 or \
        month_number == 11:
-        if 1 <= day_number <= 30:
-            return True
+        return 1 <= day_number <= 30
     if month_number > 12:
         return False
     else:
