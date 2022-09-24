@@ -72,16 +72,16 @@ def search_by_make(all_cars: str, search: str) -> list:
 
 
 def search_by_model(all_cars: str, search: str) -> list:
-    """Return all the model search result regardless of case sensitivity"""
+    """Return all the model search result regardless of case sensitivity."""
     cars = all_cars.split(",")
     result_list = []
     for car in cars:
-        items = car.split(" ")
-        if (items[1].casefold() == search.casefold() or
-                items[2].casefold() == search.casefold() or
-                items[3].casefold() == search.casefold() or
-                items[4].casefold() == search.casefold()):
+        items = car.split(" ", 1)
+        if search.casefold() in items[1].casefold():
             result_list.append(car)
         else:
             continue
     return result_list
+
+
+print(search_by_model("Audi A4,Skoda Superb,Audi A4 B5,Skoda Octavia VR6", "Octavia vr6"))
