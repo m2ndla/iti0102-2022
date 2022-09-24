@@ -50,9 +50,38 @@ def car_models(all_cars: str) -> list:
         return []
     cars = all_cars.split(",")
     for car in cars:
-        unit = car.split(" ")
+        unit = car.split(" ", 1)
         if unit[1] in all_models:
             continue
         else:
             all_models.append(unit[1])
     return all_models
+
+
+def search_by_make(all_cars: str, search: str) -> list:
+    """Return the make search result regardless of case sensitivity."""
+    cars = all_cars.split(",")
+    result_list = []
+    for car in cars:
+        items = car.split(" ")
+        if items[0].casefold() == search.casefold():
+            result_list.append(car)
+        else:
+            continue
+    return result_list
+
+
+def search_by_model(all_cars: str, search: str) -> list:
+    """Return all the model search result regardless of case sensitivity"""
+    cars = all_cars.split(",")
+    result_list = []
+    for car in cars:
+        items = car.split(" ")
+        if (items[1].casefold() == search.casefold() or
+                items[2].casefold() == search.casefold() or
+                items[3].casefold() == search.casefold() or
+                items[4].casefold() == search.casefold()):
+            result_list.append(car)
+        else:
+            continue
+    return result_list
