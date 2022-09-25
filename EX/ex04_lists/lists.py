@@ -78,11 +78,11 @@ def search_by_model(all_cars: str, search: str) -> list:
     for car in cars:
         car_lowercase = car.casefold()
         items = car_lowercase.split(" ")
-        if search.casefold() in items:
+        if search.casefold() in items[1:]:
             result_list.append(car)
         else:
             continue
     return result_list
 
 
-print(search_by_model("Audi A4,Skoda Superb,Audi A4 B5,Skoda Octavia VR6", "Octavia vr6"))
+print(search_by_model("Audi A4,Skoda Superb,Audi A4 B5,Skoda Octavia VR6", "b5"))
