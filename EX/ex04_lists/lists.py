@@ -85,4 +85,59 @@ def search_by_model(all_cars: str, search: str) -> list:
     return result_list
 
 
-print(search_by_model("Audi A4,Skoda Superb,Audi A4 B5,Skoda Octavia VR6", "b5"))
+"""Part 3."""
+
+
+def car_make_and_models(all_cars: str) -> list:
+    """
+    Create a list of structured information about makes and models.
+    For each different car make in the input string an element is created in the output list.
+    The element itself is a list, where the first position is the name of the make (string),
+    the second element is a list of models for the given make (list of strings).
+
+    No duplicate makes or models should be in the output.
+
+    The order of the makes and models should be the same os in the input list (first appearance).
+
+    "Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon Lux,Skoda Superb,Skoda Superb,BMW x5" =>
+    [['Audi', ['A4']], ['Skoda', ['Super', 'Octavia', 'Superb']], ['BMW', ['530', 'x5']], ['Seat', ['Leon Lux']]]
+    """
+    result_list = []
+    cars = all_cars.split(",")
+    for car in cars:
+        items = car.split(" ", 1)
+        make = items[0]
+        model = items[1]
+        make_and_model = [make, [model]]
+        if make in result_list:
+            if model in make_and_model:
+                continue
+            else:
+                make_and_model.append(model)
+        else:
+            result_list.append(make_and_model)
+    return result_list
+
+
+print(car_make_and_models("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon Lux,Skoda Superb,Skoda Superb,BMW x5"))
+
+
+def add_cars(car_list: list, all_cars: str) -> list:
+    """
+    Add cars from the list into the existing car list.
+
+    The first parameter is in the same format as the output of the previous function.
+    The second parameter is a string of comma separated cars (as in all the previous functions).
+    The task is to add cars from the string into the list.
+
+    Hint: This and car_make_and_models are very similar functions. Try to use one inside another.
+
+    [['Audi', ['A4']], ['Skoda', ['Superb']]]
+    and
+    "Audi A6,BMW A B C,Audi A4"
+
+    =>
+
+    [['Audi', ['A4', 'A6']], ['Skoda', ['Superb']], ['BMW', ['A B C']]]
+    """
+    return []
