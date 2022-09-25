@@ -76,8 +76,9 @@ def search_by_model(all_cars: str, search: str) -> list:
     cars = all_cars.split(",")
     result_list = []
     for car in cars:
-        items = car.split(" ", 1)
-        if search.casefold() in items[1].casefold():
+        car_lowercase = car.casefold()
+        items = car_lowercase.split(" ")
+        if search.casefold() in items:
             result_list.append(car)
         else:
             continue
