@@ -104,6 +104,8 @@ def car_make_and_models(all_cars: str) -> list:
     [['Audi', ['A4']], ['Skoda', ['Super', 'Octavia', 'Superb']], ['BMW', ['530', 'x5']], ['Seat', ['Leon Lux']]]
     """
     result_list = []
+    if all_cars == "":
+        return result_list
     cars = all_cars.split(",")
     for car in cars:
         items = car.split(" ", 1)
