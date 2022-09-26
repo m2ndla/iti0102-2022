@@ -87,7 +87,6 @@ def search_by_model(all_cars: str, search: str) -> list:
 
 """Part 3."""
 
-
 def car_make_and_models(all_cars: str) -> list:
     """
     Create a list of structured information about makes and models.
@@ -127,9 +126,6 @@ def car_make_and_models(all_cars: str) -> list:
     return result_list
 
 
-print(car_make_and_models("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon Lux,Skoda Superb,Skoda Superb,BMW x5"))
-
-
 def add_cars(car_list: list, all_cars: str) -> list:
     """
     Add cars from the list into the existing car list.
@@ -148,4 +144,38 @@ def add_cars(car_list: list, all_cars: str) -> list:
 
     [['Audi', ['A4', 'A6']], ['Skoda', ['Superb']], ['BMW', ['A B C']]]
     """
-    return []
+    new_list = car_make_and_models(all_cars)
+    models = []
+    for car in car_list:
+        if car[0] in models:
+            continue
+        models.append(car[0])
+        for new_car in new_list:
+            if car[0] == new_car[0]:
+                if len(new_car[1]) != 1:
+                    for many_car in new_car[1]:
+                        if many_car not in car[1]:
+                            car[1].append(many_car)
+                else:
+                    car[1].append(new_car[1])
+            elif new_car[0] not in models:
+                models.append(new_car[0])
+                print(new_car[1])
+                car_list.append([new_car[0], new_car[1]])
+            # else:
+            #     for existing_make in car_list:
+            #         if car[0] == existing_make[0]:
+            #             if car[1] in existing_make[1]:
+            #                 break
+            #             else:
+            #                 existing_make[1].append(car[1])
+            #                 break
+            #     else:
+            #         car_list.append(car)
+
+
+
+    return car_list
+
+
+print(add_cars([['Audi', ['A4']], ['Skoda', ['Superb']]], "Audi A6,BMW A B C,Audi A4"))
