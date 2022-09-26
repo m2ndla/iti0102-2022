@@ -147,14 +147,14 @@ def add_cars(car_list: list, all_cars: str) -> list:
     new_list = car_make_and_models(all_cars)
     if not car_list:
         return new_list
+    print(new_list)
     models = []
     for car in car_list:
-        if car[0] in models:
-            continue
         models.append(car[0])
+    for car in car_list:
         for new_car in new_list:
             if car[0] == new_car[0]:
-                if len(new_car[1]) != 1:
+                if len(new_car[1]) != 1 or len(new_car[1]) != 2:
                     for many_car in new_car[1]:
                         if many_car not in car[1]:
                             car[1].append(many_car)
@@ -164,6 +164,7 @@ def add_cars(car_list: list, all_cars: str) -> list:
                 models.append(new_car[0])
                 print(new_car[1])
                 car_list.append([new_car[0], new_car[1]])
+
             # else:
             #     for existing_make in car_list:
             #         if car[0] == existing_make[0]:
@@ -180,4 +181,4 @@ def add_cars(car_list: list, all_cars: str) -> list:
     return car_list
 
 
-print(add_cars([['Audi', ['A4']], ['Skoda', ['Superb']]], "Audi A6,BMW A B C,Audi A4"))
+print(add_cars([['Audi', ['A4']], ['Skoda', ['Superb']]], "Audi A6,BMW A B C,Audi A4,Skoda Octavia VR6"))
