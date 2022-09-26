@@ -91,6 +91,7 @@ def search_by_model(all_cars: str, search: str) -> list:
 def car_make_and_models(all_cars: str) -> list:
     """
     Create a list of structured information about makes and models.
+
     For each different car make in the input string an element is created in the output list.
     The element itself is a list, where the first position is the name of the make (string),
     the second element is a list of models for the given make (list of strings).
@@ -105,25 +106,32 @@ def car_make_and_models(all_cars: str) -> list:
     result_list = []
     cars = all_cars.split(",")
     for car in cars:
+        print(car + "-auto")
         items = car.split(" ", 1)
         make = items[0]
         model = items[1]
         if not result_list:
             result_list.append([make, [model]])
+
         for car_2 in result_list:
             if make == car_2[0]:
                 if model in car_2[1]:
                     continue
                 else:
                     car_2[1].append(model)
+                    break
             else:
-                if make in result_list:
-                    if model in car_2[1]:
-                        continue
-                    else:
-                        car_2[1].append(model)
+                for existing_make in result_list:
+                    print(existing_make[0] +"make")
+                    if make == existing_make[0]:
+                        if model in car_2[1]:
+                            break
+                        else:
+                            existing_make[1].append(model)
+                            break
                 else:
                     result_list.append([make, [model]])
+
     return result_list
 
 
