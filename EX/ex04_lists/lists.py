@@ -108,14 +108,22 @@ def car_make_and_models(all_cars: str) -> list:
         items = car.split(" ", 1)
         make = items[0]
         model = items[1]
-        make_and_model = [make, [model]]
-        if make in result_list:
-            if model in make_and_model:
-                continue
+        if not result_list:
+            result_list.append([make, [model]])
+        for car_2 in result_list:
+            if make == car_2[0]:
+                if model in car_2[1]:
+                    continue
+                else:
+                    car_2[1].append(model)
             else:
-                make_and_model.append(model)
-        else:
-            result_list.append(make_and_model)
+                if make in result_list:
+                    if model in car_2[1]:
+                        continue
+                    else:
+                        car_2[1].append(model)
+                else:
+                    result_list.append([make, [model]])
     return result_list
 
 
