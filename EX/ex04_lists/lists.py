@@ -145,6 +145,8 @@ def add_cars(car_list: list, all_cars: str) -> list:
     [['Audi', ['A4', 'A6']], ['Skoda', ['Superb']], ['BMW', ['A B C']]]
     """
     new_list = car_make_and_models(all_cars)
+    if not car_list:
+        return new_list
     models = []
     for car in car_list:
         if car[0] in models:
