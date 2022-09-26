@@ -87,6 +87,7 @@ def search_by_model(all_cars: str, search: str) -> list:
 
 """Part 3."""
 
+
 def car_make_and_models(all_cars: str) -> list:
     """
     Create a list of structured information about makes and models.
@@ -175,8 +176,6 @@ def add_cars(car_list: list, all_cars: str) -> list:
             #                 break
             #     else:
             #         car_list.append(car)
-
-
 
     return car_list
 
