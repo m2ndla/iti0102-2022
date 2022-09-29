@@ -67,6 +67,7 @@ if __name__ == '__main__':
 def create_dictionary_with_hobbies(data: str) -> dict:
     """
     Create dictionary about hobbies and their hobbyists ie. {hobby1: [name1, name2, ...], hobby2: [...]}.
+
     :param data: given string from database
     :return: dictionary, where keys are hobbies and values are lists of people. Values are sorted alphabetically
     """
@@ -87,5 +88,3 @@ def create_dictionary_with_hobbies(data: str) -> dict:
     for hobby in hobby_list:
         dictionary[hobby[0]] = list(set(hobby[1]))
     return sort_dictionary(dictionary)
-
-print(create_dictionary_with_hobbies(sample_data))
