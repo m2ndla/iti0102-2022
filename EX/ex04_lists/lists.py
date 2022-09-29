@@ -180,15 +180,47 @@ def add_cars(car_list: list, all_cars: str) -> list:
     return car_list
 
 
+"""Car inventory part 4."""
+
+
+def makes_and_models_with_duplicates(all_cars: str) -> list:
+    """
+    Create a list of structured information about makes and models, but with duplicates.
+    example:
+    input: "Audi A4,Audi A4,Skoda Superb,Skoda Octavia,Skoda Superb,Skoda Octavia,Audi A4"
+    output: [['Audi', ['A4', 'A4', 'A4']], ['Skoda', ['Superb', 'Octavia', 'Superb', 'Octavia']]]
+    """
+    result_list = []
+    if all_cars == "":
+        return result_list
+    cars = all_cars.split(",")
+    for car in cars:
+        items = car.split(" ", 1)
+        make = items[0]
+        model = items[1]
+        if not result_list:
+            result_list.append([make, [model]])
+        else:
+            for existing_make in result_list:
+                if make == existing_make[0]:
+                    existing_make[1].append(model)
+                    break
+            else:
+                result_list.append([make, [model]])
+
+    return result_list
+
+
 def number_of_cars(all_cars: str) -> list:
     """
     Create a list of tuples with make quantities.
+
     The result is a list of tuples.
     Each tuple is in the form: (make_name: str, quantity: int).
     The order of the tuples (makes) is the same as the first appearance in the list.
     """
     final_list = []
-    cars_list = car_make_and_models(all_cars)
+    cars_list = makes_and_models_with_duplicates(all_cars)
     if all_cars == "":
         return final_list
     for car in cars_list:
