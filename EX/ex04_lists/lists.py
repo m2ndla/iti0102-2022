@@ -180,4 +180,43 @@ def add_cars(car_list: list, all_cars: str) -> list:
     return car_list
 
 
-print(add_cars([['Audi', ['A4']], ['Skoda', ['Superb']]], "Audi A6,BMW A B C,Audi A4,Skoda Octavia VR6"))
+def number_of_cars(all_cars: str) -> list:
+    """
+    Create a list of tuples with make quantities.
+    The result is a list of tuples.
+    Each tuple is in the form: (make_name: str, quantity: int).
+    The order of the tuples (makes) is the same as the first appearance in the list.
+    """
+    final_list = []
+    cars_list = car_make_and_models(all_cars)
+    if all_cars == "":
+        return final_list
+    for car in cars_list:
+        tuple = car[0] + ", " + str(len(car[1]))
+        final_list.append(tuple)
+    return final_list
+
+
+print(number_of_cars("Audi A4,Skoda Super,Skoda Octavia,BMW 530,Seat Leon Lux,Skoda Superb,Skoda Superb,BMW x5"))
+
+
+def car_list_as_string(cars: list) -> str:
+    """
+    Create a list of cars.
+
+    The input list is in the same format as the result of car_make_and_models function.
+    The order of the elements in the string is the same as in the list.
+    [['Audi', ['A4']], ['Skoda', ['Superb']]] =>
+    "Audi A4,Skoda Superb"
+    """
+    cars_string = ""
+    for car in cars:
+        make = car[0]
+        for model in car[1]:
+            cars_string += make + " " + model + ","
+    empty = ""
+    final_string = cars_string[:-1] + empty
+    return final_string
+
+
+print(car_list_as_string([['Audi', ['A4', 'A6']], ['Skoda', ['Superb']], ['BMW', ['A B C']]]))
