@@ -192,8 +192,8 @@ def number_of_cars(all_cars: str) -> list:
     if all_cars == "":
         return final_list
     for car in cars_list:
-        tuple = car[0] + ", " + str(len(car[1]))
-        final_list.append(tuple)
+        car_tuple = tuple([car[0], len(car[1])])
+        final_list.append(car_tuple)
     return final_list
 
 
