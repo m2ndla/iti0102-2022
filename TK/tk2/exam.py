@@ -83,7 +83,17 @@ def non_decreasing_list(nums: list) -> bool:
     :param nums:
     :return:
     """
-    pass
+    lst = []
+    for num in nums:
+        if not lst:
+            lst.append(num)
+            continue
+        if num >= lst[0]:
+            lst.append(num)
+            continue
+        else:
+            return False
+    return True
 
 
 def max_duplicate(nums: list) -> int | None:
