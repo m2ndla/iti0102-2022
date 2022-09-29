@@ -123,7 +123,6 @@ def car_make_and_models(all_cars: str) -> list:
                         break
             else:
                 result_list.append([make, [model]])
-
     return result_list
 
 
@@ -165,18 +164,6 @@ def add_cars(car_list: list, all_cars: str) -> list:
                 models.append(new_car[0])
                 print(new_car[1])
                 car_list.append([new_car[0], new_car[1]])
-
-            # else:
-            #     for existing_make in car_list:
-            #         if car[0] == existing_make[0]:
-            #             if car[1] in existing_make[1]:
-            #                 break
-            #             else:
-            #                 existing_make[1].append(car[1])
-            #                 break
-            #     else:
-            #         car_list.append(car)
-
     return car_list
 
 
