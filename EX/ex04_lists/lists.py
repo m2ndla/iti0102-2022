@@ -186,6 +186,7 @@ def add_cars(car_list: list, all_cars: str) -> list:
 def makes_and_models_with_duplicates(all_cars: str) -> list:
     """
     Create a list of structured information about makes and models, but with duplicates.
+
     example:
     input: "Audi A4,Audi A4,Skoda Superb,Skoda Octavia,Skoda Superb,Skoda Octavia,Audi A4"
     output: [['Audi', ['A4', 'A4', 'A4']], ['Skoda', ['Superb', 'Octavia', 'Superb', 'Octavia']]]
