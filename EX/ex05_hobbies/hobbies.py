@@ -118,7 +118,7 @@ def find_people_with_most_hobbies(data: str) -> list:
             top_list.append(name[0])
         else:
             continue
-    return top_list
+    return sorted(top_list)
 
 
 def find_least_popular_hobbies(data: str) -> list:
@@ -146,7 +146,7 @@ def find_least_popular_hobbies(data: str) -> list:
             top_list.append(name[0])
         else:
             continue
-    return top_list
+    return sorted(top_list)
 
 
 if __name__ == '__main__':
