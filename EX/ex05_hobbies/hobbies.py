@@ -96,18 +96,28 @@ def create_dictionary_with_hobbies(data: str) -> dict:
 def find_people_with_most_hobbies(data: str) -> list:
     """
     Find the people who have the most hobbies.
+
     :param data: given string from database
     :return: list of people with most hobbies. Sorted alphabetically.
     """
     top_list = []
+    len_var = 0
     length_list = []
     data_list = create_dictionary(data)
     for item in data_list.items():
         hobbies = item[1]
         length_list.append([item[0], len(hobbies)])
     dct = dict(length_list)
-    most_hobbies = str(max(dct, key=dct.get))
-    top_list.append(most_hobbies)
+    for num in dct.values():
+        if num > len_var:
+            len_var = num
+        else:
+            continue
+    for name in dct.items():
+        if name[1] == len_var:
+            top_list.append(name[0])
+        else:
+            continue
     return top_list
 
 
@@ -118,7 +128,25 @@ def find_least_popular_hobbies(data: str) -> list:
     :param data: given string from database
     :return: list of least popular hobbies. Sorted alphabetically.
     """
-    return
+    top_list = []
+    len_var = 999999999999
+    length_list = []
+    data_list = create_dictionary_with_hobbies(data)
+    for item in data_list.items():
+        hobbies = item[1]
+        length_list.append([item[0], len(hobbies)])
+    dct = dict(length_list)
+    for num in dct.values():
+        if len_var > num:
+            len_var = num
+        else:
+            continue
+    for name in dct.items():
+        if name[1] == len_var:
+            top_list.append(name[0])
+        else:
+            continue
+    return top_list
 
 
 if __name__ == '__main__':
@@ -136,4 +164,3 @@ if __name__ == '__main__':
     print(len(dic["Molly"]))  # -> 5
     print(len(dic["Sophie"]))  # -> 7
     print(find_least_popular_hobbies(sample_data))  # -> ['dance', 'flowers', 'puzzles', 'tennis']
-
