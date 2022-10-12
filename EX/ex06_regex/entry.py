@@ -48,8 +48,8 @@ class Entry:
         This method is perfect. Don't touch it.
         """
         return self.first_name == other.first_name and self.last_name == other.last_name and \
-               self.id_code == other.id_code and self.phone_number == other.phone_number and \
-               self.date_of_birth == other.date_of_birth and self.address == other.address
+            self.id_code == other.id_code and self.phone_number == other.phone_number and \
+            self.date_of_birth == other.date_of_birth and self.address == other.address
 
 
 def parse(row: str) -> Entry:
@@ -80,7 +80,7 @@ def parse(row: str) -> Entry:
     if not number:
         phone_number = None
     else:
-        num = number[0]
+        num = " ".join(number)
         if len(num) > 13:
             phone_number = num[11:19]
         else:
@@ -91,7 +91,7 @@ def parse(row: str) -> Entry:
         date = None
     else:
         date = date_of_birth[0]
-    ptrn5 = "(?<=\d)[A-ZÕÜÖÄ].*"
+    ptrn5 = r"(?<=\d)[A-ZÕÜÖÄ].*"
     address1 = re.findall(ptrn5, row)
     if not address1:
         address = None
