@@ -15,7 +15,7 @@ def find_words(text: str) -> list:
     :param text: given string to find words from
     :return: list of words found in given string
     """
-    ptrn = r"[A-ZÕÜÖÄ][a-zõüöä]*"
+    ptrn = r"[A-ZÕÜÖÄ][a-zõüöä]{2,99999}"
     result = re.findall(ptrn, text)
     return result
 
@@ -33,7 +33,7 @@ def find_words_with_vowels(text: str) -> list:
     :param text: given string to find words from
     :return: list of words that start with a vowel found in given string
     """
-    ptrn = r"[AEIOUÕÜÖÄ][a-zõüöä]*"
+    ptrn = r"[AEIOUÕÜÖÄ][a-zõüöä]{2,99999}"
     result = re.findall(ptrn, text)
     return result
 
@@ -70,7 +70,7 @@ def find_words_from_sentence(sentence: str) -> list:
     :param sentence: given sentence to find words from
     :return: list of words found in given sentence
     """
-    ptrn = r"[A-ZÕÜÖÄa-zõüöä]*[^ ,.?!;:-]"
+    ptrn = r"[A-ZÕÜÖÄa-zõüöä\d]*[^ ,.?!;:-]"
     result = re.findall(ptrn, sentence)
     return result
 
@@ -147,7 +147,7 @@ def find_phone_numbers(text: str) -> dict:
             else:
                 numberlist.append([itm[1], [itm[2]]])
     for number in numberlist:
-        dct[number[0]] = list(set(number[1]))
+        dct[number[0]] = number[1]
     return dct
 
 
