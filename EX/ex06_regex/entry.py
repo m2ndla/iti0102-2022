@@ -75,7 +75,7 @@ def parse(row: str) -> Entry:
         id_code = None
     else:
         id_code = id_code1[0]
-    ptrn3 = r"(?:(\+\d{3} ?)\d{8})|\d{19}"
+    ptrn3 = r"\+\d{3} ?\d{8}|\d{19}"
     number = re.findall(ptrn3, row)
     if not number:
         phone_number = None
