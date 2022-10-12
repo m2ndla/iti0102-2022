@@ -25,7 +25,6 @@ class Entry:
         If the object doesn't have date of birth given, return None.
         :return:
         """
-        date_of_birth
         pass
 
     def __repr__(self) -> str:
@@ -76,12 +75,16 @@ def parse(row: str) -> Entry:
         id_code = None
     else:
         id_code = id_code1[0]
-    ptrn3 = r"\+\d{3} \d{8}"
+    ptrn3 = r"(?:(\+\d{3} ?)\d{8})|\d{19}"
     number = re.findall(ptrn3, row)
     if not number:
         phone_number = None
     else:
-        phone_number = number[0]
+        num = number[0]
+        if len(num) > 13:
+            phone_number = num[11:19]
+        else:
+            phone_number = num
     ptrn4 = r"\d{2}-\d{2}-\d{4}"
     date_of_birth = re.findall(ptrn4, row)
     if not date_of_birth:
