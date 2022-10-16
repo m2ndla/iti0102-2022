@@ -1,4 +1,4 @@
-"""File handling. Part 1"""
+"""File handling. Part 1."""
 
 
 import csv
@@ -7,6 +7,7 @@ import csv
 def read_file_contents(filename: str) -> str:
     """
     Read file contents into string.
+
     In this exercise, we can assume the file exists.
 
     :param filename: File to read.
@@ -36,7 +37,7 @@ def read_file_contents_to_list(filename: str) -> list:
         for line in text:
             lst.append(line)
     for item in lst:
-        new_lst.append(item.replace("\n", ""))
+        new_lst.append(item.replace(r"\n", ""))
     return new_lst
 
 
