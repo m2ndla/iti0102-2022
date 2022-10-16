@@ -19,7 +19,7 @@ def read_file_contents(filename: str) -> str:
 
 
 def read_file_contents_to_list(filename: str) -> list:
-    """
+    r"""
     Read file contents into list of lines.
 
     In this exercise, we can assume the file exists.
@@ -37,7 +37,7 @@ def read_file_contents_to_list(filename: str) -> list:
         for line in text:
             lst.append(line)
     for item in lst:
-        new_lst.append(item.replace(r"\n", ""))
+        new_lst.append(item.replace("\n", ""))
     return new_lst
 
 
