@@ -110,7 +110,12 @@ def write_lines_to_file(filename: str, lines: list) -> None:
         for line in lines:
             new_line = str(line) + "\n"
             file.write(f"{new_line}")
-        str(file).replace(f"{str(file)[:-2]}", "")
+    with open(f"{filename}", "r+") as text:
+        content = text.read()
+        content = content.rstrip("\n")
+        text.seek(0)
+        text.write(content)
+        text.truncate()
     pass
 
 
