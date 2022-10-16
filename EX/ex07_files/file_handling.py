@@ -140,7 +140,7 @@ def write_csv_file(filename: str, data: list) -> None:
     :param data: List of lists to write to the file.
     :return: None
     """
-    with open(f"{filename}", "w", newline=" ") as file:
+    with open(f"{filename}", "w", newline="") as file:
         writer = csv.writer(file, delimiter=",")
         for line in data:
             writer.writerow(line)
