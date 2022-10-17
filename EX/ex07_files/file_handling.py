@@ -316,7 +316,8 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
             headers_list.append(header)
     headers_set = set(headers_list)
     headers = list(headers_set)
-    result.append(headers)
+    if headers:
+        result.append(headers)
     for person in data:
         lst = []
         for header in headers:
@@ -326,8 +327,9 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
                 lst.append("")
         result.append(lst)
         lst = []
-    if not result:
-        write_lines_to_file(filename, result)
-    else:
-        write_csv_file(filename, result)
+    write_csv_file(filename, result)
     pass
+
+
+lst_2 = []
+write_list_of_dicts_to_csv_file("test.txt", lst_2)
