@@ -219,9 +219,7 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
 
 def create_dictionary(name: str, age: str, sex: str) -> dict:
     """
-    This is a helping function.
-
-    This creates dictionary in suitable form.
+    Create a dictionary based on input.
 
     :param name: Name.
     :param age: Age.
@@ -328,5 +326,8 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
                 lst.append("")
         result.append(lst)
         lst = []
-    write_csv_file(filename, result)
+    if not result:
+        write_lines_to_file(filename, result)
+    else:
+        write_csv_file(filename, result)
     pass
