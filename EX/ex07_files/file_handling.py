@@ -206,7 +206,7 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
     for line in towns:
         for item in result:
             if item[0] == line[0]:
-                item[1].replace("-", line[1])
+                item[1] = line[1]
                 break
         else:
             result.append([line[0], line[1], "-"])
