@@ -310,6 +310,3 @@ def write_list_of_dicts_to_csv_file(filename: str, data: list) -> None:
     :return: None
     """
     pass
-
-
-read_csv_file_into_list_of_dicts("text.txt")
