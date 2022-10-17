@@ -208,8 +208,8 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
             if item[0] == line[0]:
                 item[1] = line[1]
                 break
-            else:
-                result.append([line[0], line[1], "-"])
-                break
+        else:
+            result.append([line[0], line[1], "-"])
+            break
     write_csv_file(csv_output_filename, result)
     pass
