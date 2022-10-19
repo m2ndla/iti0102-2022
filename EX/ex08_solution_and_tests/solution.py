@@ -41,12 +41,13 @@ def fruit_order(small_baskets: int, big_baskets: int, ordered_amount: int) -> in
     (4, 1, 9) -> 4
     (3, 1, 10) -> -1
     """
+    most_big_baskets = []
     for number in range(1, big_baskets + 1):
         if number * 5 < ordered_amount:
-            most_big_baskets = number
+            most_big_baskets.append(number)
         else:
             break
-    needed = ordered_amount - (most_big_baskets * 5)
+    needed = ordered_amount - (most_big_baskets[-1] * 5)
     if big_baskets >= (ordered_amount / 5):
         if small_baskets >= (ordered_amount % 5):
             return needed
