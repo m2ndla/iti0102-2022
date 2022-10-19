@@ -10,18 +10,8 @@ from solution import fruit_order
 def test_students_study__evening_coffee_doesnt_matter():
     """Test whether drinking coffee matters when studying in the evening."""
     assert students_study(18, True) is True
-    # assert students_study(19, True) is True
-    # assert students_study(20, True) is True
-    # assert students_study(21, True) is True
-    # assert students_study(22, True) is True
-    # assert students_study(23, True) is True
     assert students_study(24, True) is True
     assert students_study(18, False) is True
-    # assert students_study(19, False) is True
-    # assert students_study(20, False) is True
-    # assert students_study(21, False) is True
-    # assert students_study(22, False) is True
-    # assert students_study(23, False) is True
     assert students_study(24, False) is True
 
 
@@ -29,40 +19,38 @@ def test_students_study__daytime_coffee_matters():
     """Test if drinking coffee affects studying in the daytime."""
 
     assert students_study(5, True) is True
-    # assert students_study(6, True) is True
-    # assert students_study(7, True) is True
-    # assert students_study(8, True) is True
-    # assert students_study(9, True) is True
-    # assert students_study(10, True) is True
-    # assert students_study(11, True) is True
-    # assert students_study(12, True) is True
-    # assert students_study(13, True) is True
-    # assert students_study(14, True) is True
-    # assert students_study(15, True) is True
-    # assert students_study(16, True) is True
     assert students_study(17, True) is True
     assert students_study(5, False) is False
-    # assert students_study(6, False) is False
-    # assert students_study(7, False) is False
-    # assert students_study(8, False) is False
-    # assert students_study(9, False) is False
-    # assert students_study(10, False) is False
-    # assert students_study(11, False) is False
-    # assert students_study(12, False) is False
-    # assert students_study(13, False) is False
-    # assert students_study(14, False) is False
-    # assert students_study(15, False) is False
-    # assert students_study(16, False) is False
     assert students_study(17, False) is False
 
 
 def test_students_study__nighttime_no_study():
     """Test whether students study at night."""
     assert students_study(1, True) is False
-    # assert students_study(2, True) is False
-    # assert students_study(3, True) is False
     assert students_study(4, True) is False
     assert students_study(1, False) is False
-    # assert students_study(2, False) is False
-    # assert students_study(3, False) is False
     assert students_study(4, False) is False
+
+
+def test_lottery__winning_numbers():
+    """Test if winning numbers are correct."""
+    assert lottery(5, 5, 5) is 10
+
+
+def test_lottery__middle_win():
+    """Test if matching 3 numbers guarantee middle win."""
+    assert lottery(1, 1, 1) is 5
+    assert lottery(10, 10, 10) is 5
+
+
+def test_lottery__b_and_c_diff():
+    """Test if b and c are different from "a"."""
+    assert lottery(1, 5, 5) is 1
+    assert lottery(10, 1, 1) is 1
+    assert lottery(1, 2, 3) is 1
+
+
+def test_lottery__b_or_c_match_a():
+    """Test results when b or c match "a"."""
+    assert lottery(1, 1, 5) is 0
+    assert lottery(1, 5, 1) is 0
