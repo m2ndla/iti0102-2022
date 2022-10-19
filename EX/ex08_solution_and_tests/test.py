@@ -94,6 +94,7 @@ def test_fruit_order__only_small():
     assert fruit_order(3, 0, 3) == 3
     assert fruit_order(2, 0, 4) == -1
     assert fruit_order(6, 2, 9) == 4
+    assert fruit_order(11, 0, 4) == 4
 
 
 def test_fruit_order__other():
@@ -104,3 +105,6 @@ def test_fruit_order__other():
     assert fruit_order(9, 2, 21) == -1
     assert fruit_order(2, 42, 214) == -1
     assert fruit_order(12, 44, 232) == 12
+    assert fruit_order(9, 2, 20) == -1
+    assert fruit_order(29, 32, 948) == -1
+    assert fruit_order(72, 72, 432) == 72
