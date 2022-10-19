@@ -68,3 +68,39 @@ def test_fruit_order__consider_big_baskets_first():
     assert fruit_order(10, 1, 10) == 5
     assert fruit_order(4, 5, 21) == 1
 
+
+def test_fruit_order__zero_amount():
+    """Test results when the amount is zero."""
+    assert fruit_order(0, 1, 0) == 0
+    assert fruit_order(1, 0, 0) == 0
+    assert fruit_order(5, 4, 0) == 0
+    assert fruit_order(0, 0, 0) == 0
+
+
+def test_fruit_order__only_big():
+    """Test results with only big baskets."""
+    assert fruit_order(0, 5, 25) == 0
+    assert fruit_order(0, 5, 30) == -1
+    assert fruit_order(5, 5, 30) == 5
+    assert fruit_order(0, 4, 28) == -1
+    assert fruit_order(0, 8, 20) == 0
+    assert fruit_order(0, 5, 23) == -1
+
+
+def test_fruit_order__only_small():
+    """Test results with only small baskets."""
+    assert fruit_order(6, 0, 6) == 6
+    assert fruit_order(6, 0, 8) == -1
+    assert fruit_order(3, 0, 3) == 3
+    assert fruit_order(2, 0, 4) == -1
+    assert fruit_order(6, 2, 9) == 4
+
+
+def test_fruit_order__other():
+    """Test other results."""
+    assert fruit_order(3, 3, 18) == 3
+    assert fruit_order(4, 5, 19) == 4
+    assert fruit_order(2, 4, 24) == -1
+    assert fruit_order(9, 2, 21) == -1
+    assert fruit_order(2, 42, 214) == -1
+    assert fruit_order(12, 44, 232) == 12
