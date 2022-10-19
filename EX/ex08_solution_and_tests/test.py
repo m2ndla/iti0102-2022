@@ -55,3 +55,16 @@ def test_lottery__b_or_c_match_a():
     """Test results when b or c match "a"."""
     assert lottery(1, 1, 5) == 0
     assert lottery(1, 5, 1) == 0
+
+
+def test_fruit_order__not_enough_baskets():
+    """Test results for not enough baskets."""
+    assert fruit_order(1, 1, 7) == -1
+    assert fruit_order(5, 5, 32) == -1
+
+
+def test_fruit_order__consider_big_baskets_first():
+    """Test if function considers big baskets before small baskets."""
+    assert fruit_order(10, 1, 10) == 5
+    assert fruit_order(4, 5, 21) == 1
+
