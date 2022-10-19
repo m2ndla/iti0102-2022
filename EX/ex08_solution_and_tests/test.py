@@ -110,4 +110,4 @@ def test_fruit_order__other():
     assert fruit_order(72, 72, 432) == 72
     assert fruit_order(0, 5, 22) == -1
     assert fruit_order(999, 999, 5994) == 999
-    assert fruit_order(2, 99, 14) == -1
+    assert fruit_order(3, 1999, 6999) == -1
