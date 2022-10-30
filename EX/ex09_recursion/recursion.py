@@ -1,4 +1,5 @@
 """If you're going to perform recursion, you need to use recursion."""
+import math
 
 
 def loop_reverse(s: str) -> str:
@@ -106,7 +107,10 @@ def add_commas(n: int):
     :param n: int
     :return: string of the formatted int
     """
-    pass
+    if len(str(n)) > 3:
+        return str(add_commas(int(str(n)[0:-3]))) + "," + str(n)[-3:]
+    else:
+        return n
 
 
 def sum_digits_recursive(number: int) -> int:
@@ -125,7 +129,10 @@ def sum_digits_recursive(number: int) -> int:
     :param number: non-negative number
     :return: sum of digits in the number
     """
-    pass
+    if number > 0:
+        return sum_digits_recursive(number // 10) + number % 10
+    else:
+        return number
 
 
 def pair_star_recursive(s: str) -> str:
@@ -144,7 +151,13 @@ def pair_star_recursive(s: str) -> str:
     :param s: input string
     :return: string with stars between identical chars.
     """
-    pass
+    if len(s) > 1:
+        if s[0] == s[1]:
+            return s[0] + "*" + pair_star_recursive(s[1:])
+        elif s[0] != s[1]:
+            return s[0] + pair_star_recursive(s[1:])
+    else:
+        return s
 
 
 def stonks(coins: float, rate: float, years: int) -> int:
@@ -163,7 +176,12 @@ def stonks(coins: float, rate: float, years: int) -> int:
     :param years: number of years (0-50)
     :return: coins after years
     """
-    pass
+    if years > 0:
+        years = years - 1
+        coins = coins + (coins * (rate / 100))
+        return stonks(coins, rate, years)
+    else:
+        return int(math.floor(coins))
 
 
 def quic_mafs(a: int, b: int) -> list:
@@ -183,7 +201,18 @@ def quic_mafs(a: int, b: int) -> list:
     :param b: int
     :return: result
     """
-    pass
+    if a == 0 or b == 0:
+        return [a, b]
+    else:
+        if a >= 2 * b:
+            a = a - (2 * b)
+            return quic_mafs(a, b)
+        else:
+            if b >= 2 * a:
+                b = b - (2 * a)
+                return quic_mafs(a, b)
+            else:
+                return [a, b]
 
 
 if __name__ == "__main__":
