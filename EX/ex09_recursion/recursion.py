@@ -110,7 +110,7 @@ def add_commas(n: int):
     if len(str(n)) > 3:
         return str(add_commas(int(str(n)[0:-3]))) + "," + str(n)[-3:]
     else:
-        return n
+        return str(n)
 
 
 def sum_digits_recursive(number: int) -> int:
