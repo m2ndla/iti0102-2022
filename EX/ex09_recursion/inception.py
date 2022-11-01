@@ -87,11 +87,14 @@ def sum_squares(nested_list):
     :param nested_list: list of lists of lists of lists of lists ... and ints
     :return: sum of squares
     """
-    # if type(nested_list[0]) is list:
-    #     return sum_squares(nested_list[0][0])
-    # if type(nested_list[0]) is int:
-    #     return (nested_list[0] ** 2) + sum_squares(nested_list[1:])
-    pass
+    if nested_list:
+        if type(nested_list[0]) == list:
+            nested_list = nested_list[0] + nested_list[1::]
+            return sum_squares(nested_list)
+        else:
+            return nested_list[0] ** 2 + sum_squares(nested_list[1::])
+    else:
+        return 0
 
 
 def count_strings(data: list, pos=None, result: dict = None) -> dict:
@@ -114,3 +117,8 @@ def count_strings(data: list, pos=None, result: dict = None) -> dict:
     :return: dict of given symbols and their count
     """
     pass
+
+
+sum_squares([1, 2, 3])  # -> 14
+sum_squares([[1, 2], 3])  # -> sum_squares([1, 2]) + 9 -> 1 + 4 + 9 -> 14
+sum_squares([[[[[[[[[2]]]]]]]]])  # -> 4
