@@ -1,5 +1,6 @@
 """KT0."""
 
+
 def add_char_into_pos(char: str, pos: int, string: str) -> str:
     """
     Return a string where a given character is added into a given position in a string.
@@ -113,9 +114,3 @@ def symbol_average_position_in_words(words):
     :return: dictionary with symbol average positions
     """
     pass
-
-
-print(nr_into_num_list(5, []))  # -> [5]
-print(nr_into_num_list(5, [1,2,3,4]))  # -> [1,2,3,4,5]
-print(nr_into_num_list(5, [1,2,3,4,5,6]))  # -> [1,2,3,4,5,5,6]
-print(nr_into_num_list(0, [1,2,3,4,5]))  # -> [0,1,2,3,4,5,]
