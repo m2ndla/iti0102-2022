@@ -12,9 +12,9 @@ def capitalize_string(s: str) -> str:
     capitalize_string("") => ""
     """
     string = ""
-    if s[0].isupper():
+    if not s:
         return s
-    elif not s:
+    if s[0].isupper():
         return s
     else:
         if len(s) == 1:
@@ -115,15 +115,15 @@ def parse_call_log(call_log: str) -> dict:
                 break
             if people[i] not in dct:
                 dct[people[i]] = [people[i + 1]]
-                break
+                if len(people) <= 2:
+                    break
             else:
                 if people[i + 1] not in dct[people[i]]:
                     dct[people[i]].append(people[i + 1])
-                    break
+                    if len(people) <= 2:
+                        break
     return dct
 
 
-print(capitalize_string("ABc"))
-print(capitalize_string("Ac"))
-print(capitalize_string("aBc"))
-print(capitalize_string("A"))
+print(parse_call_log("mati:kalle,kalle:malle:mari:juri,mari:mati"))
+print(parse_call_log("ago:kati,ago:mati,ago:kati"))
