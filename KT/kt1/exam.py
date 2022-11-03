@@ -123,7 +123,3 @@ def parse_call_log(call_log: str) -> dict:
                     if len(people) <= 2:
                         break
     return dct
-
-
-print(parse_call_log("mati:kalle,kalle:malle:mari:juri,mari:mati"))
-print(parse_call_log("ago:kati,ago:mati,ago:kati"))
