@@ -21,8 +21,8 @@ def capitalize_string(s: str) -> str:
             return s.capitalize()
         lst = list(s)
         first = str(lst[0])
-        string += first.upper()
-        for char in lst[1:]:
+        string += first.capitalize()
+        for char in lst[1::]:
             string += char
         return string
 
@@ -39,7 +39,10 @@ def has_seven(nums):
     has_seven([7, 1, 7, 1, 7]) => True
     has_seven([7, 1, 7, 1, 1, 7]) => False
     """
-    pass
+    if nums.count(7) == 3:
+
+    else:
+        return False
 
 
 def list_move(initial_list: list, amount: int, factor: int) -> list:
@@ -92,4 +95,27 @@ def parse_call_log(call_log: str) -> dict:
     :param call_log: the whole log as string
     :return: dictionary with call information
     """
-    pass
+    dct = {}
+    if not call_log:
+        return dct
+    call_list = call_log.split(",")
+    for call in call_list:
+        people = call.split(":")
+        amount = len(people)
+        for i in range(amount):
+            if i == amount:
+                break
+            if people[i] not in dct:
+                dct[people[i]] = [people[i + 1]]
+                break
+            else:
+                if people[i + 1] not in dct[people[i]:
+                    dct[people[i]].append(people[i + 1])
+                    break
+    return dct
+
+
+print(capitalize_string("ABc"))
+print(capitalize_string("Ac"))
+print(capitalize_string("aBc"))
+print(capitalize_string("A"))
