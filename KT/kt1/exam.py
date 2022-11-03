@@ -132,7 +132,3 @@ def parse_call_log(call_log: str) -> dict:
                     if len(people) <= 2:
                         break
     return dct
-
-
-print(has_seven([7, 1, 7, 1, 1, 7]))
-print(has_seven([7, 1, 7, 1, 7]))
