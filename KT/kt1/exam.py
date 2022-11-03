@@ -138,6 +138,3 @@ def parse_call_log(call_log: str) -> dict:
                     if len(people) <= 2:
                         break
     return dct
-
-
-print(list_move([1, 2, 3], 3, 2))
