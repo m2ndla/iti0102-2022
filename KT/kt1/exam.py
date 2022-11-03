@@ -39,6 +39,8 @@ def has_seven(nums):
     has_seven([7, 1, 7, 1, 7]) => True
     has_seven([7, 1, 7, 1, 1, 7]) => False
     """
+    if not nums:
+        return False
     lst = []
     if nums.count(7) == 3:
         for num in nums:
@@ -67,7 +69,14 @@ def list_move(initial_list: list, amount: int, factor: int) -> list:
     list_move([1, 2, 3], 4, 1) => [[1, 2, 3], [3, 1, 2], [2, 3, 1], [1, 2, 3]]
     list_move([], 3, 4) => [[], [], []]
     """
-    pass
+    lst = []
+    if not initial_list:
+        for i in range(amount):
+            lst.append(initial_list)
+        return lst
+    else:
+        for i in range(amount):
+            return lst
 
 
 def parse_call_log(call_log: str) -> dict:
