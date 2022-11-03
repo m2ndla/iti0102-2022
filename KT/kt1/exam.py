@@ -46,7 +46,7 @@ def has_seven(nums):
         for num in nums:
             if not lst:
                 lst.append(num)
-            if num == lst[-1]:
+            elif num == lst[-1]:
                 return False
             else:
                 lst.append(num)
@@ -132,3 +132,7 @@ def parse_call_log(call_log: str) -> dict:
                     if len(people) <= 2:
                         break
     return dct
+
+
+print(has_seven([7, 1, 7, 1, 1, 7]))
+print(has_seven([7, 1, 7, 1, 7]))
