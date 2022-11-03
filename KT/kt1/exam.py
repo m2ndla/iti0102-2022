@@ -17,6 +17,8 @@ def capitalize_string(s: str) -> str:
     elif not s:
         return s
     else:
+        if len(s) == 1:
+            return s.capitalize()
         lst = list(s)
         first = str(lst[0])
         string += first.upper()
