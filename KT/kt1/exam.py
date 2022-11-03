@@ -70,13 +70,17 @@ def list_move(initial_list: list, amount: int, factor: int) -> list:
     list_move([], 3, 4) => [[], [], []]
     """
     lst = []
-    if not initial_list:
+    if not initial_list or factor == 0:
         for i in range(amount):
             lst.append(initial_list)
         return lst
     else:
         for i in range(amount):
-            return lst
+            initial_list.insert(0, initial_list[-1])
+            initial_list.pop()
+            lst.append(initial_list)
+        return lst
+
 
 
 def parse_call_log(call_log: str) -> dict:
