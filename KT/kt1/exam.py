@@ -40,7 +40,6 @@ def has_seven(nums):
     has_seven([7, 1, 7, 1, 1, 7]) => False
     """
     if nums.count(7) == 3:
-
     else:
         return False
 
@@ -110,7 +109,7 @@ def parse_call_log(call_log: str) -> dict:
                 break
             else:
                 if people[i + 1] not in dct[people[i]:
-                    dct[people[i]].append(people[i + 1])
+                    dct[people[i]].append(people[i + 1])]:
                     break
     return dct
 
