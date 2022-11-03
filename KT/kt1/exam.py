@@ -82,7 +82,6 @@ def list_move(initial_list: list, amount: int, factor: int) -> list:
         return lst
 
 
-
 def parse_call_log(call_log: str) -> dict:
     """
     Parse calling logs to find out who has been calling to whom.
