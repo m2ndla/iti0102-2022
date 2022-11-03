@@ -76,9 +76,12 @@ def list_move(initial_list: list, amount: int, factor: int) -> list:
         return lst
     else:
         for i in range(amount):
-            initial_list.insert(0, initial_list[-1])
-            initial_list.pop()
-            lst.append(initial_list)
+            changed_list = []
+            for n in range(factor):
+                initial_list.insert(0, initial_list[-1])
+                initial_list.pop()
+            changed_list += initial_list
+            lst.append(changed_list)
         return lst
 
 
@@ -135,3 +138,6 @@ def parse_call_log(call_log: str) -> dict:
                     if len(people) <= 2:
                         break
     return dct
+
+
+print(list_move([1, 2, 3], 3, 2))
