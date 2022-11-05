@@ -111,13 +111,16 @@ def sort_hashtags_by_popularity(tweets: list) -> list:
     lst_by_hashtag = []
     hashtag_list = []
     for tweet in tweets:
-        l = tweet.content.split(" ")
-        hashtag = l[-1]
+        x = tweet.content.split(" ")
+        hashtag = x[-1]
         hashtag_list.append(hashtag)
     for hashtag in hashtag_list:
         lst_by_hashtag.append(filter_by_hashtag(tweets, hashtag))
     pass
-
+# kasuta dicti, regexit, võtmeks hashtag, valueks rt arv, sort dict võtmete järgi a-z, sordi uus dict rt arvu järgi, reverse true
+# time_list = sorted(tweets, key=lambda x: x.time)
+# rt_list = sorted(time_list, key=lambda x: x.retweets, reverse=True)
+# return rt_list
 
 if __name__ == '__main__':
     tweet1 = Tweet("@realDonaldTrump", "Despite the negative press covfefe #bigsmart", 1249, 54303)
