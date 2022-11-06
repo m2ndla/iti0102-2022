@@ -1,4 +1,5 @@
 """Twitter."""
+import re
 
 
 class Tweet:
@@ -55,25 +56,9 @@ def sort_by_popularity(tweets: list) -> list:
     :param tweets: Input list of tweets.
     :return: List of tweets by popularity
     """
-    rt_list = []
-    time_list = []
-    lst = []
-    for tweet in tweets:
-        rt_list.append(tweet.retweets)
-        time_list.append(tweet.time)
-    rt_list.sort()
-    rt_list.reverse()
-    time_list.sort()
-    time_list.reverse()
-    if len(rt_list) == len(set(rt_list)):  # checking if some tweets have the same amount of retweets
-        for rt in rt_list:
-            for tweet in tweets:
-                if rt == tweet.retweets:
-                    lst.append(tweet)
-                    break
-        return lst
-    else:
-        pass
+    time_list = sorted(tweets, key=lambda x: x.time)
+    rt_list = sorted(tweets, key=lambda x: x.retweets, reverse=True)
+    return rt_list
 
 
 def filter_by_hashtag(tweets: list, hashtag: str) -> list:
@@ -108,19 +93,21 @@ def sort_hashtags_by_popularity(tweets: list) -> list:
     :param tweets: Input list of tweets.
     :return: List of hashtags by popularity.
     """
-    lst_by_hashtag = []
-    hashtag_list = []
+    dct = {}
+    new_dct = {}
+    ptrn = r"\#\w+"
     for tweet in tweets:
-        x = tweet.content.split(" ")
-        hashtag = x[-1]
-        hashtag_list.append(hashtag)
-    for hashtag in hashtag_list:
-        lst_by_hashtag.append(filter_by_hashtag(tweets, hashtag))
-    pass
-# kasuta dicti, regexit, võtmeks hashtag, valueks rt arv, sort dict võtmete järgi a-z, sordi uus dict rt arvu järgi, reverse true
-# time_list = sorted(tweets, key=lambda x: x.time)
-# rt_list = sorted(time_list, key=lambda x: x.retweets, reverse=True)
-# return rt_list
+        result = re.findall(ptrn, tweet.content)
+        if result[0] not in dct:
+            dct[result[0]] = [tweet.retweets]
+        else:
+            dct[result[0]].append(tweet.retweets)
+    for item in dct.items():
+        new_dct[item[0]] = sum(item[1])
+    alpha_dct = sorted(new_dct)
+    rt_dct = sorted(alpha_dct, key=lambda x: x[1], reverse=True)
+    return rt_dct
+
 
 if __name__ == '__main__':
     tweet1 = Tweet("@realDonaldTrump", "Despite the negative press covfefe #bigsmart", 1249, 54303)
