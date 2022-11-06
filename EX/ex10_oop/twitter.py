@@ -57,7 +57,7 @@ def sort_by_popularity(tweets: list) -> list:
     :return: List of tweets by popularity
     """
     time_list = sorted(tweets, key=lambda x: x.time)
-    rt_list = sorted(tweets, key=lambda x: x.retweets, reverse=True)
+    rt_list = sorted(time_list, key=lambda x: x.retweets, reverse=True)
     return rt_list
 
 
