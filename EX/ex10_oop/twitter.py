@@ -99,6 +99,8 @@ def sort_hashtags_by_popularity(tweets: list) -> list:
     ptrn = r"\#\w+"
     for tweet in tweets:
         result = re.findall(ptrn, tweet.content)
+        if not result:
+            return []
         if result[0] not in dct:
             dct[result[0]] = [tweet.retweets]
         else:
