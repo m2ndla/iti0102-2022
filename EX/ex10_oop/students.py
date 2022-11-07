@@ -35,7 +35,7 @@ def filter_by_course(student_list: list, course: str) -> list:
     lst = []
     for student in student_list:
         if course in student.courses:
-           lst.append(student)
+            lst.append(student)
     return lst
 
 
