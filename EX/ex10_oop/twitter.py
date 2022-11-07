@@ -101,10 +101,11 @@ def sort_hashtags_by_popularity(tweets: list) -> list:
         result = re.findall(ptrn, tweet.content)
         if not result:
             continue
-        if result[0] not in dct:
-            dct[result[0]] = [tweet.retweets]
-        else:
-            dct[result[0]].append(tweet.retweets)
+        for hashtag in result:
+            if hashtag not in dct:
+                dct[hashtag] = [tweet.retweets]
+            else:
+                dct[hashtag].append(tweet.retweets)
     for item in dct.items():
         new_dct[item[0]] = sum(item[1])
     for i in sorted(new_dct):
