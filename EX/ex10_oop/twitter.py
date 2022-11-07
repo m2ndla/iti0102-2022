@@ -136,4 +136,3 @@ if __name__ == '__main__':
 
     sorted_hashtags = sort_hashtags_by_popularity(tweets)
     print(sorted_hashtags[0])  # -> "#heart"
-    print(sort_hashtags_by_popularity(tweets))
