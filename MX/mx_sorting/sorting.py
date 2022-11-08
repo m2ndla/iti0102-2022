@@ -1,5 +1,4 @@
 """Sorting."""
-from collections import Counter
 
 
 def sort_numbers_using_sort(numbers: list[int]):
