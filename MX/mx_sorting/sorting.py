@@ -144,9 +144,7 @@ def sort_people_by_popularity_of_name(people: list[Person]) -> list:
     :return: Sorted list of people.
     """
     alpha_sort = sorted(people, key=lambda x: x.name)
-    result = list(map(lambda x: x.name, alpha_sort))
-    count = Counter(result)
-    popularity_sort = sorted(alpha_sort, key=lambda alpha_sort: list(map(lambda x: x.name, alpha_sort)), reverse=True)
+    popularity_sort = sorted(alpha_sort, key=lambda x: (-list(map(lambda y: y.name, people)).count(x.name), x.name))
     return popularity_sort
 
 
