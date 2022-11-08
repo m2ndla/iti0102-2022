@@ -127,9 +127,6 @@ def sort_people_by_age_name_height(people: list[Person]) -> list:
     return age_list
 
 
-def people_counter(people: list[Person]):
-    return list(map(count, people))
-
 def sort_people_by_popularity_of_name(people: list[Person]) -> list:
     """
     Sort people by the popularity of their name from most popular to least popular.
