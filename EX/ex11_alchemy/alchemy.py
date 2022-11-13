@@ -60,7 +60,7 @@ class AlchemicalStorage:
         :param element_name: Name of the element to remove.
         :return: The removed AlchemicalElement object or None.
         """
-        for element in self.element_list:
+        for element in self.element_list[::-1]:
             if element.name == element_name:
                 self.element_list.pop(self.element_list.index(element))
                 return element
