@@ -112,12 +112,12 @@ class AlchemicalStorage:
         dct = {}
         output_str = "Content:\n"
         if not self.element_list:
-            return "Content:\nEmpty."
+            return "Content:\n Empty."
         for element in self.element_list:
             dct[element] = self.element_list.count(element)
         for element_and_count in dct.items():
-            output_str += f"* {element_and_count[0].name} x {element_and_count[1]}\n"
-        return output_str
+            output_str += f" * {element_and_count[0].name} x {element_and_count[1]}\n"
+        return output_str[:-2]
 
 
 if __name__ == '__main__':
@@ -148,6 +148,11 @@ if __name__ == '__main__':
 
     print(storage.pop('Water') == element_three)  # True
     print(storage.pop('Water') == element_two)  # True
+    storage.add(element_three)
+    storage.add(element_two)
+    storage.add(element_three)
+    storage.add(element_two)
+    print(storage.get_content())
 
 """Part 2."""
 
