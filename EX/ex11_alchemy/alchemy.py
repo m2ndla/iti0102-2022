@@ -187,10 +187,13 @@ class AlchemicalRecipes:
         :param second_component_name: The name of the second component element.
         :param product_name: The name of the product element.
         """
-        if product_name in self.recipes:
-            raise RecipeOverlapException()
-        else:
-            self.recipes[product_name] = [first_component_name, second_component_name]
+        for components in self.recipes.values():
+            if first_component_name in components or second_component_name in components:
+                if first_component_name in components and second_component_name in components:
+                    raise RecipeOverlapException()
+                else:
+                    raise DuplicateRecipeNamesException()
+        self.recipes[product_name] = [first_component_name, second_component_name]
 
     def get_product_name(self, first_component_name: str, second_component_name: str) -> str or None:
         """
@@ -237,6 +240,8 @@ class Cauldron(AlchemicalStorage):
 
     def __init__(self, recipes: AlchemicalRecipes):
         """Initialize the Cauldron class."""
+        super().__init__()
+        self.recipes = recipes
 
     def add(self, element: AlchemicalElement):
         """
@@ -254,6 +259,8 @@ class Cauldron(AlchemicalStorage):
 
         :param element: Input object to add to storage.
         """
+        pass
+
 
 
 if __name__ == '__main__':
