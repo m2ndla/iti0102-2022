@@ -110,6 +110,7 @@ class AlchemicalStorage:
         :return: Content as a string.
         """
         dct = {}
+        new_dct = {}
         output_str = "Content:\n"
         if not self.element_list:
             return "Content:\n Empty."
@@ -118,9 +119,13 @@ class AlchemicalStorage:
                 dct[element.name] = 1
             else:
                 dct[element.name] += 1
-        for element_and_count in dct.items():
+        sorted_keys = sorted(dct.keys(), key=lambda x: x.lower())
+        for key in sorted_keys:
+            new_dct[key] = dct[key]
+        for element_and_count in new_dct.items():
             output_str += f" * {element_and_count[0]} x {element_and_count[1]}\n"
         return output_str[:-1]
+
 
 if __name__ == '__main__':
     element_one = AlchemicalElement('Fire')
