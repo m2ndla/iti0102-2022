@@ -114,11 +114,13 @@ class AlchemicalStorage:
         if not self.element_list:
             return "Content:\n Empty."
         for element in self.element_list:
-            dct[element] = self.element_list.count(element)
+            if element.name not in dct:
+                dct[element.name] = 1
+            else:
+                dct[element.name] += 1
         for element_and_count in dct.items():
-            output_str += f" * {element_and_count[0].name} x {element_and_count[1]}\n"
+            output_str += f" * {element_and_count[0]} x {element_and_count[1]}\n"
         return output_str[:-1]
-
 
 if __name__ == '__main__':
     element_one = AlchemicalElement('Fire')
