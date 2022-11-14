@@ -117,7 +117,7 @@ class AlchemicalStorage:
             dct[element] = self.element_list.count(element)
         for element_and_count in dct.items():
             output_str += f" * {element_and_count[0].name} x {element_and_count[1]}\n"
-        return output_str[:-2]
+        return output_str[:-1]
 
 
 if __name__ == '__main__':
