@@ -49,6 +49,8 @@ class Monster:
         self.name = name
         self.type = type
         self.power = power
+        if self.type == "Zombie":
+            self.name = f"Undead {self.name}"
 
     def __repr__(self):
         """
@@ -58,15 +60,15 @@ class Monster:
         """
         return f"{self.name} of type {self.type}, Power: {self.power}."
 
-    @property
-    def name(self):
-        """Name."""
-        return self._name
-
-    @name.setter
-    def name(self, type):
-        if type == "Zombie":
-            self.name = f"Undead {self.name}"
+    # @property
+    # def name(self):
+    #     """Name."""
+    #     return self._name
+    #
+    # @name.setter
+    # def name(self, type):
+    #     if type == "Zombie":
+    #         self.name = f"Undead {self.name}"
 
 
 class World:
