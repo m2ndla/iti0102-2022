@@ -37,7 +37,7 @@ class Adventurer:
         if exp > 0:
             self.experience += exp
         if self.experience > 99:
-            self.power += (self.experience / 10)
+            self.power += (self.experience // 10)
             self.experience = 0
 
 
