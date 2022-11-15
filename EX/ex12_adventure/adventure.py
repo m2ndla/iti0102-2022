@@ -110,16 +110,16 @@ class World:
             if character.name == name:
                 self.graveyard.append(character)
                 self.adventurer_list.remove(character)
-                pass
+                break
         for character in self.monster_list:
             if character.name == name:
                 self.graveyard.append(character)
                 self.monster_list.remove(character)
-                pass
+                break
         for character in self.graveyard:
             if character.name == name:
                 self.graveyard.remove(character)
-                pass
+                break
 
     def necromancers_active(self, active: bool):
         """Change status of necromancers."""
