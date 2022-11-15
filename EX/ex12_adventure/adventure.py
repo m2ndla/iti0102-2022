@@ -119,6 +119,7 @@ class World:
         for character in self.graveyard:
             if character.name == name:
                 self.graveyard.remove(character)
+                pass
 
     def necromancers_active(self, active: bool):
         """Change status of necromancers."""
@@ -252,7 +253,6 @@ class World:
         for monster in self.monster_list:
             self.active_monsters.append(monster)
         del self.monster_list[:]
-
 
 
 if __name__ == "__main__":
