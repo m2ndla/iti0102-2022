@@ -34,7 +34,8 @@ class Adventurer:
 
     def add_experience(self, exp: int):
         """Adding experience to adventurer."""
-        self.experience += exp
+        if exp > 0:
+            self.experience += exp
         if self.experience > 99:
             self.power += (self.experience / 10)
             self.experience = 0
@@ -44,7 +45,7 @@ class Monster:
     """Monster class."""
 
     def __init__(self, name: str, type: str, power: int):
-        """Initializing the Monster class."""
+        """Initialize the Monster class."""
         self.name = name
         self.type = type
         self.power = power
@@ -59,18 +60,20 @@ class Monster:
 
     @property
     def name(self):
+        """Name."""
         return self._name
 
     @name.setter
     def name(self, type):
         if type == "Zombie":
-            self._name = f"Undead {self.name}"
+            self.name = f"Undead {self.name}"
 
 
 class World:
     """World-class. (pun intended)."""
 
     def __init__(self, master_name: str):
+        """Initialize the class world."""
         self.master_name = master_name
         self.adventurer_list = []
         self.monster_list = []
