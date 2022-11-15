@@ -49,7 +49,7 @@ class Monster:
         self.name = name
         self.type = type
         self.power = power
-        if self.type == "Zombie":
+        if "Zombie" in self.type:
             self.name = f"Undead {self.name}"
 
     def __repr__(self):
@@ -59,16 +59,6 @@ class Monster:
         Format: [name] of type [type], Power: [power].
         """
         return f"{self.name} of type {self.type}, Power: {self.power}."
-
-    # @property
-    # def name(self):
-    #     """Name."""
-    #     return self._name
-    #
-    # @name.setter
-    # def name(self, type):
-    #     if type == "Zombie":
-    #         self.name = f"Undead {self.name}"
 
 
 class World:
@@ -80,6 +70,9 @@ class World:
         self.adventurer_list = []
         self.monster_list = []
         self.graveyard = []
+        self.necromancers = False
+        self.active_adventurers = []
+        self.active_monsters = []
 
     def get_python_master(self):
         """Return python master's name."""
@@ -110,6 +103,126 @@ class World:
     def get_graveyard(self):
         """Return graveyard list."""
         return self.graveyard
+
+    def remove_character(self, name):
+        """Remove character from list."""
+        if name in self.adventurer_list:
+            self.graveyard.append(name)
+            self.adventurer_list.remove(name)
+        elif name in self.monster_list:
+            self.graveyard.append(name)
+            self.monster_list.remove(name)
+        elif name in self.graveyard:
+            self.graveyard.remove(name)
+
+    def necromancers_active(self, active: bool):
+        """Change status of necromancers."""
+        if active:
+            self.necromancers = True
+        else:
+            self.necromancers = False
+
+    def revive_graveyard(self):
+        """Revive players in the graveyard."""
+        if self.necromancers:
+            for character in self.graveyard:
+                if isinstance(character, Monster):
+                    character.type = "Zombie"
+                    self.monster_list.append(character)
+                if isinstance(character, Adventurer):
+                    self.monster_list.append(Monster(character.name, f"Zombie {character.class_type}", character.power))
+            del self.graveyard[:]
+            self.necromancers = False
+
+    def get_active_adventurers(self):
+        """Return active adventurers sorted by experience."""
+        sorted_active = sorted(self.active_adventurers, key=lambda x: x.experience, reverse=True)
+        return sorted_active
+
+    def add_strongest_adventurer(self, class_type: str):
+        """Add the strongest adventurer who is not yet active."""
+        lst = []
+        for adventurer in self.adventurer_list:
+            if adventurer.class_type == class_type:
+                lst.append(adventurer)
+        strongest = sorted(lst, key=lambda x: x.power, reverse=True)
+        self.active_adventurers.append(strongest[0])
+
+    def add_weakest_adventurer(self, class_type: str):
+        """Add the weakest adventurer who is not yet active."""
+        lst = []
+        for adventurer in self.adventurer_list:
+            if adventurer.class_type == class_type:
+                lst.append(adventurer)
+        weakest = sorted(lst, key=lambda x: x.power)
+        self.active_adventurers.append(weakest[0])
+
+    def add_most_experienced_adventurer(self, class_type: str):
+        """Add the most experienced adventurer who is not yet active."""
+        lst = []
+        for adventurer in self.adventurer_list:
+            if adventurer.class_type == class_type:
+                lst.append(adventurer)
+        most_xp = sorted(lst, key=lambda x: x.experience, reverse=True)
+        self.active_adventurers.append(most_xp[0])
+
+    def add_least_experienced_adventurer(self, class_type: str):
+        """Add the least experienced adventurer who is not yet active."""
+        lst = []
+        for adventurer in self.adventurer_list:
+            if adventurer.class_type == class_type:
+                lst.append(adventurer)
+        least_xp = sorted(lst, key=lambda x: x.experience)
+        self.active_adventurers.append(least_xp[0])
+
+    def add_adventurer_by_name(self, name: str):
+        """Add an adventurer by name."""
+        for adventurer in self.adventurer_list:
+            if adventurer.name == name:
+                self.active_adventurers.append(adventurer)
+
+    def add_all_adventurers_of_class_type(self, class_type: str):
+        """Add all adventurers of given class type, who are not yet active."""
+        for adventurer in self.adventurer_list:
+            if adventurer.class_type == class_type:
+                self.active_adventurers.append(adventurer)
+
+    def add_all_adventurers(self):
+        """Add all adventurers who are not yet active."""
+        for adventurer in self.adventurer_list:
+            self.active_adventurers.append(adventurer)
+
+    def get_active_monsters(self):
+        """Return all the active monsters"""
+        sorted_monsters = sorted(self.active_monsters, key=lambda x: x.power, reverse=True)
+        return sorted_monsters
+
+    def add_monster_by_name(self, name: str):
+        """Add a monster by its name if they're not yet active."""
+        for monster in self.monster_list:
+            if monster.name == name:
+                self.active_monsters.append(monster)
+
+    def add_strongest_monster(self):
+        """Add the strongest monster, who is not yet active."""
+        sorted_monsters = sorted(self.monster_list, key=lambda x: x.power, reverse=True)
+        self.active_monsters.append(sorted_monsters[0])
+
+    def add_weakest_monster(self):
+        """Add the weakest monster, who is not yet active."""
+        sorted_monsters = sorted(self.monster_list, key=lambda x: x.power)
+        self.active_monsters.append(sorted_monsters[0])
+
+    def add_all_monsters_of_type(self, type: str):
+        """Add all monsters of given type, who are not yet active."""
+        for monster in self.monster_list:
+            if monster.type == type:
+                self.active_monsters.append(monster)
+
+    def add_all_monsters(self):
+        """Add all monsters who are not yet active."""
+        for monster in self.monster_list:
+            self.active_monsters.append(monster)
 
 
 if __name__ == "__main__":
