@@ -254,6 +254,124 @@ class World:
             self.active_monsters.append(monster)
         del self.monster_list[:]
 
+    def are_druids(self):
+        """Check if there are druids."""
+        for adventurer in self.active_adventurers:
+            if "Druid" in adventurer.class_type:
+                return True
+        return False
+
+    def are_zombies(self):
+        """Check if there are zombies."""
+        for monster in self.active_monsters:
+            if "Zombie" in monster.type:
+                return True
+        return False
+
+    def get_powers(self):
+        """Return the winner of the fight."""
+        advent_power = 0
+        monster_power = 0
+        remove_lst = []
+        for monster in self.active_monsters:
+            if self.are_druids() and ("Animal" in monster.type or "Ent" in monster.type):
+                remove_lst.append(monster)
+            monster_power += monster.power
+        if remove_lst:
+            for monster in remove_lst:
+                self.active_monsters.remove(monster)
+        for adventurer in self.active_adventurers:
+            if self.are_zombies() and adventurer.class_type == "Paladin":
+                adventurer.power = adventurer.power * 2
+            advent_power += adventurer.power
+        if advent_power > monster_power:
+            return True
+        elif monster_power > advent_power:
+            return False
+        elif monster_power == advent_power:
+            return None
+
+    def remove_paladins_power(self):
+        """Remove the power of Paladin class adventurers after fight."""
+        if self.are_zombies():
+            for adventurer in self.active_adventurers:
+                if adventurer.class_type == "Paladin":
+                    adventurer.power = adventurer.power // 2
+
+    def xp_from_adventure(self, draw: bool, deadly: bool):
+        """Calculate the xp given to adventurers."""
+        pwr = 0
+        for monster in self.active_monsters:
+            pwr += monster.power
+        exp_per_adventurer = pwr // len(self.active_adventurers)
+        if draw:
+            self.give_xp(exp_per_adventurer // 2)
+        if deadly:
+            self.give_xp(exp_per_adventurer * 2)
+        else:
+            self.give_xp(exp_per_adventurer)
+
+    def give_xp(self, exp: int):
+        """Give xp to adventurers."""
+        for adventurer in self.active_adventurers:
+            adventurer.experience += exp
+
+    def make_adventurers_inactive(self):
+        """Remove adventurers from active list."""
+        for adventurer in self.active_adventurers:
+            self.adventurer_list.append(adventurer)
+        del self.active_adventurers[:]
+
+    def make_monsters_inactive(self):
+        """Remove monsters from active list."""
+        for monster in self.active_monsters:
+            self.monster_list.append(monster)
+        del self.active_monsters[:]
+
+    def adventurers_win(self, deadly: bool):
+        """Do what is needed when adventurers win."""
+        self.xp_from_adventure(False, deadly)
+        self.remove_paladins_power()
+        self.make_adventurers_inactive()
+        if deadly:
+            for monster in self.active_monsters:
+                self.get_graveyard().append(monster)
+            del self.active_monsters[:]
+        else:
+            self.make_monsters_inactive()
+
+    def monsters_win(self, deadly: bool):
+        """Do what is needed when monsters win."""
+        self.remove_paladins_power()
+        self.make_monsters_inactive()
+        if deadly:
+            for adventurer in self.active_adventurers:
+                self.get_graveyard().append(adventurer)
+            del self.active_adventurers[:]
+        else:
+            self.make_adventurers_inactive()
+
+    def draw(self, deadly: bool):
+        """Do what is needed when the adventurers and monsters are in a stalemate."""
+        self.xp_from_adventure(True, deadly)
+        self.remove_paladins_power()
+        self.make_adventurers_inactive()
+        self.make_monsters_inactive()
+
+    def go_adventure(self, deadly: bool = False):
+        """Go on an adventure. Finally."""
+        if self.get_powers() is True:
+            self.adventurers_win(deadly)
+        elif self.get_powers() is False:
+            self.monsters_win(deadly)
+        elif self.get_powers() is None:
+            self.draw(deadly)
+
+# if get powers == :
+#   True: advent võitis, anna xp, remove paladins power ja if deadly, siis monsterid graveyardi, muidu tagasi listi
+#   False: monsterid võitsid, no xp, remove paladins power ja if deadly, siis advent graveyardi, muidu tagasi listi
+#   None: viik, anna xp, remove paladins power ja kõik mongolid tagasi listi
+
 
 if __name__ == "__main__":
     print("Kord oli maailm.")
