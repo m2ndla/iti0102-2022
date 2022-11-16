@@ -49,6 +49,8 @@ class Monster:
         self.name = name
         self.type = type
         self.power = power
+        if "Zombie" in self.type:
+            self.name = f"Undead {self.name}"
 
     def __repr__(self):
         """
