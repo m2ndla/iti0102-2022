@@ -261,6 +261,12 @@ class World:
                 return True
         return False
 
+    def are_animals_or_ents(self):
+        for monster in self.active_monsters:
+            if "Animal" in monster.type or "Ent" in monster.type:
+                return True
+        return False
+
     def are_zombies(self):
         """Check if there are zombies."""
         for monster in self.active_monsters:
@@ -274,9 +280,10 @@ class World:
         monster_power = 0
         remove_lst = []
         for monster in self.active_monsters:
-            if self.are_druids() and ("Animal" in monster.type or "Ent" in monster.type):
+            if self.are_druids() and self.are_animals_or_ents():
                 remove_lst.append(monster)
-            monster_power += monster.power
+            else:
+                monster_power += monster.power
         if remove_lst:
             for monster in remove_lst:
                 self.active_monsters.remove(monster)
