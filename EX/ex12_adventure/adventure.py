@@ -49,8 +49,6 @@ class Monster:
         self.name = name
         self.type = type
         self.power = power
-        if "Zombie" in self.type:
-            self.name = f"Undead {self.name}"
 
     def __repr__(self):
         """
@@ -134,9 +132,10 @@ class World:
             for character in self.graveyard:
                 if isinstance(character, Monster):
                     character.type = "Zombie"
+                    character.name = f"Undead {character.name}"
                     self.monster_list.append(character)
                 if isinstance(character, Adventurer):
-                    self.monster_list.append(Monster(character.name, f"Zombie {character.class_type}", character.power))
+                    self.monster_list.append(Monster(f"Undead {character.name}", f"Zombie {character.class_type}", character.power))
             del self.graveyard[:]
             self.necromancers = False
 
