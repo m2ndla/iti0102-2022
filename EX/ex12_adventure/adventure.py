@@ -1,4 +1,5 @@
 """EX12: Adventure."""
+import math
 
 
 class Adventurer:
@@ -37,7 +38,7 @@ class Adventurer:
         if exp > 0:
             self.experience += exp
         if self.experience > 99:
-            self.power += (self.experience // 10)
+            self.power += (math.floor(self.experience / 10))
             self.experience = 0
 
 
@@ -314,15 +315,15 @@ class World:
         pwr = 0
         for monster in self.active_monsters:
             pwr += monster.power
-        exp_per_adventurer = pwr // len(self.active_adventurers)
+        exp_per_adventurer = math.floor(pwr / len(self.active_adventurers))
         if draw:
-            self.give_xp(exp_per_adventurer // 2)
+            self.give_xp(math.floor(exp_per_adventurer / 2))
         if deadly:
-            self.give_xp(exp_per_adventurer * 2)
+            self.give_xp(math.floor(exp_per_adventurer * 2))
         else:
             self.give_xp(exp_per_adventurer)
 
-    def give_xp(self, exp: int):
+    def give_xp(self, exp):
         """Give xp to adventurers."""
         for adventurer in self.active_adventurers:
             adventurer.add_experience(exp)
