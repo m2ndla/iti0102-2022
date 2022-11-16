@@ -323,7 +323,7 @@ class World:
     def give_xp(self, exp: int):
         """Give xp to adventurers."""
         for adventurer in self.active_adventurers:
-            adventurer.experience += exp
+            adventurer.add_experience(exp)
 
     def make_adventurers_inactive(self):
         """Remove adventurers from active list."""
