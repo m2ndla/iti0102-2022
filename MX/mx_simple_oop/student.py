@@ -9,6 +9,7 @@ class Student:
         self.name = name
         self.finished = finished
 
+
 if __name__ == "__main__":
     student = Student("John")
     print(student.name)
