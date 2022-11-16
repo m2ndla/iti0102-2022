@@ -262,6 +262,7 @@ class World:
         return False
 
     def are_animals_or_ents(self):
+        """Check if there are Animal or Ent type of monsters."""
         for monster in self.active_monsters:
             if "Animal" in monster.type or "Ent" in monster.type:
                 return True
@@ -287,6 +288,7 @@ class World:
         if remove_lst:
             for monster in remove_lst:
                 self.active_monsters.remove(monster)
+                self.monster_list.append(monster)
         for adventurer in self.active_adventurers:
             if self.are_zombies() and adventurer.class_type == "Paladin":
                 adventurer.power = adventurer.power * 2
