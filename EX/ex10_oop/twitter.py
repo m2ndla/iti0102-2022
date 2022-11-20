@@ -95,25 +95,27 @@ def sort_hashtags_by_popularity(tweets: list) -> list:
     """
     dct = {}
     new_dct = {}
+    alpha_dct = {}
     ptrn = r"\#\w+"
     for tweet in tweets:
         result = re.findall(ptrn, tweet.content)
-        if result[0] not in dct:
-            dct[result[0]] = [tweet.retweets]
-        else:
-            dct[result[0]].append(tweet.retweets)
+        if not result:
+            continue
+        for hashtag in result:
+            if hashtag not in dct:
+                dct[hashtag] = [tweet.retweets]
+            else:
+                dct[hashtag].append(tweet.retweets)
     for item in dct.items():
         new_dct[item[0]] = sum(item[1])
-    alpha_dct = sorted(new_dct)
-    rt_dct = sorted(alpha_dct, key=lambda x: x[1], reverse=True)
+    for i in sorted(new_dct):
+        alpha_dct[i] = new_dct[i]
+    rt_dct = sorted(alpha_dct, key=lambda x: alpha_dct[x], reverse=True)
     return rt_dct
-
 
 # kasuta dicti, regexit, võtmeks hashtag, valueks rt arv, sort dict võtmete järgi a-z, sordi uus dict rt arvu järgi,
 # reverse true
-# time_list = sorted(tweets, key=lambda x: x.time)
-# rt_list = sorted(time_list, key=lambda x: x.retweets, reverse=True)
-# return rt_list
+
 
 if __name__ == '__main__':
     tweet1 = Tweet("@realDonaldTrump", "Despite the negative press covfefe #bigsmart", 1249, 54303)
