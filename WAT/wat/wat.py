@@ -13,7 +13,7 @@ def function_b(num):
 
 def function_c(num):
     """I have no clue."""
-    return num
+    return int(str(num)[0])
 
 
 def function_d(num):
@@ -33,7 +33,7 @@ def function_f(num):
 
 def function_g(num):
     """I have no clue."""
-    return num
+    return -num
 
 
 def function_h(num):
