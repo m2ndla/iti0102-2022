@@ -23,7 +23,7 @@ def function_d(num):
 
 def function_e(num):
     """I have no clue."""
-    return num
+    return num * 576
 
 
 def function_f(num):
