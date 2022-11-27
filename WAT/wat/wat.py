@@ -1,4 +1,6 @@
 """Wat."""
 
 
-print("Hello")
+def wat():
+    """Wat."""
+    return "wat."
