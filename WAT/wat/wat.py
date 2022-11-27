@@ -3,7 +3,7 @@
 
 def function_a(num):
     """I have no clue."""
-    return num
+    return num[0]
 
 
 def function_b(num):
