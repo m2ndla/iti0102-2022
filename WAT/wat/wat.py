@@ -18,7 +18,7 @@ def function_c(num):
 
 def function_d(num):
     """I have no clue."""
-    return num
+    return num * num * 30
 
 
 def function_e(num):
