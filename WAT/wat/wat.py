@@ -6,4 +6,4 @@ def wat():
     return "wat."
 
 
-print("wat??")
+print("wat???")
