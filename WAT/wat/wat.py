@@ -8,7 +8,7 @@ def function_a(num):
 
 def function_b(num):
     """I have no clue."""
-    return num
+    return num + 6
 
 
 def function_c(num):
