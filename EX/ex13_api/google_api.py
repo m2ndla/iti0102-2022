@@ -9,12 +9,13 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
-data_range = "A1"
+data_range = "A1:B"
 
 
 def get_links_from_spreadsheet(id: str, token_file_name: str) -> list:
     """
     Return a list of strings from the first column of a Google Spreadsheet with the given ID.
+
     Example input with https://docs.google.com/spreadsheets/d/1WrCzu4p5lFwPljqZ6tMQEJb2vSJQSGjyMsqcYt-yS4M
         get_links_from_spreadsheet('1WrCzu4p5lFwPljqZ6tMQEJb2vSJQSGjyMsqcYt-yS4M', 'token.json')
 
@@ -56,4 +57,5 @@ def get_links_from_spreadsheet(id: str, token_file_name: str) -> list:
             data_lst.append(row[0])
         return data_lst
     except HttpError as err:
+        print(err)
         return []
