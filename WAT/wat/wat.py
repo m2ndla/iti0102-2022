@@ -3,7 +3,7 @@
 
 def function_a(num):
     """I have no clue."""
-    return int(str(num)[0])
+    return 4
 
 
 def function_b(num):
