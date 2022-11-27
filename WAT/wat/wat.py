@@ -1,41 +1,41 @@
 """Wat."""
 
 
-def function_a():
+def function_a(num):
     """I have no clue."""
-    return 1
+    return num
 
 
-def function_b():
+def function_b(num):
     """I have no clue."""
-    return 2
+    return num
 
 
-def function_c():
+def function_c(num):
     """I have no clue."""
-    return 3
+    return num
 
 
-def function_d():
+def function_d(num):
     """I have no clue."""
-    return 4
+    return num
 
 
-def function_e():
+def function_e(num):
     """I have no clue."""
-    return 5
+    return num
 
 
-def function_f():
+def function_f(num):
     """I have no clue."""
-    return 6
+    return num
 
 
-def function_g():
+def function_g(num):
     """I have no clue."""
-    return 7
+    return num
 
 
-def function_h():
+def function_h(num):
     """I have no clue."""
-    return 8
+    return num
