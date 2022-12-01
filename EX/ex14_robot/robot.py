@@ -9,7 +9,7 @@ def test_run(robot: FollowerBot):
     :param FollowerBot robot: instance of the robot that you need to make move
     """
     robot.set_wheels_speed(30)
-    robot.sleep(2.5)
+    robot.sleep(5)
     robot.set_wheels_speed(0)
     robot.done()
     pass
@@ -23,7 +23,6 @@ def drive_to_line(robot: FollowerBot):
 
     :param FollowerBot robot: instance of the robot that you need to make move
     """
-    pass
 
 
 def follow_the_line(robot: FollowerBot):
@@ -34,7 +33,6 @@ def follow_the_line(robot: FollowerBot):
 
     :param FollowerBot robot: instance of the robot that you need to make move
     """
-    pass
 
 
 def the_true_follower(robot: FollowerBot):
@@ -43,4 +41,3 @@ def the_true_follower(robot: FollowerBot):
 
     :param FollowerBot robot: instance of the robot that you need to make move
     """
-    pass
