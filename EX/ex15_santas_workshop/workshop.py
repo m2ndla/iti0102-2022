@@ -3,7 +3,7 @@ import urllib.parse
 import requests
 
 """
-idee: 
+idee:
 class lists:
     - initis annad nice, wish ja naughty listi kaasa
     - loeb sisse kõik listid ja loob listi, kus iga element on dict:
@@ -11,13 +11,13 @@ class lists:
             {"nimi": "abc", "riik": "def", "wishlist": "str", "nice": True/False}
             jne
         - ]
-        
+ 
 class Kids():
     listide klassi inputi põhjal luuakse kid objekt, kus kogu info olemas
 
 class Present():
     iga kingi kohta on oma objekt, kus on antud kingi nimetus, hind, tootmise aeg ja kaal
-  
+
 """
 kids_list = []
 presents_list = []
@@ -25,6 +25,7 @@ presents_list = []
 
 class Lists:
     """Lists class."""
+
     def __init__(self, wish_list: str, nice_list: str, naughty_list: str):
         """Initialize Lists class."""
         self.wish_list = wish_list
@@ -85,11 +86,13 @@ class Lists:
                 )
 
     def kids_into_list(self):
+        """Add Kid objects into a list."""
         for kid in self.kids:
             for param in kid.values():
                 kids_list.append(Kid(param[0], param[1], param[2], param[3]))
 
     def main_func(self):
+        """Exec all functions needed."""
         self.read_lists()
         self.get_presents()
         self.kids_into_list()
@@ -97,6 +100,7 @@ class Lists:
 
 class Kid:
     """Kid class."""
+
     def __init__(self, name: str, country: str, wishlist: list, nice: bool):
         """Initialize the kid class."""
         self.name = name
@@ -111,6 +115,7 @@ class Kid:
 
 class Present:
     """Present class."""
+
     def __init__(self, name: str, cost: int, production_time: int, weight_in_grams: int):
         """Initialize the present class."""
         self.name = name
