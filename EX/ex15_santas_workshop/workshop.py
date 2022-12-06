@@ -11,7 +11,7 @@ class lists:
             {"nimi": "abc", "riik": "def", "wishlist": "str", "nice": True/False}
             jne
         - ]
- 
+
 class Kids():
     listide klassi inputi põhjal luuakse kid objekt, kus kogu info olemas
 
