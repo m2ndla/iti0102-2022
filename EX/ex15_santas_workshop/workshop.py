@@ -18,9 +18,9 @@ class Kids():
 
 class Present():
     iga kingi kohta on oma objekt, kus on antud kingi nimetus, hind, tootmise aeg ja kaal
-    
+
 class warehouse(ladu):
-    valmis kinkide ladu 
+    valmis kinkide ladu
 
 class factory:
     kinkide tootmine vastavalt vajadusele, initis kaasas olemasolev $$$ ja aeg
@@ -108,7 +108,7 @@ class World:
             self.children.append(Kid(kid["name"], kid["country"], kid["nice"], wishlist))
 
     def main(self):
-        """Main function."""
+        """Execute all functions."""
         if self.files_exist():
             self.read_lists()
             self.add_kids_to_list()
