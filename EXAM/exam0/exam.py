@@ -93,7 +93,7 @@ def tic_tac_toe(game: list) -> int:
     row2 = game[1]
     row3 = game[2]
     for i in range(3):
-        if row1[i] == row2[i] == row3[i]:
+        if row1[i] == row2[i] == row3[i] and row1[i] != 0:
             return row1[i]
     for i in range(1, 3):
         if row1[0] == row2[1] == row3[2] == i or row1[2] == row2[1] == row3[0] == i:
