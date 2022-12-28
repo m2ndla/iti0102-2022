@@ -60,7 +60,13 @@ def get_names_from_results(results_string: str, min_result: int) -> list:
     get_names_from_results("ago 123,peeter 11,kitty11!! 33", 11) => ["ago", "peeter",  "kitty11!!"]
     get_names_from_results("ago 123,peeter 11,kusti riin 14", 12) => ["ago", "kusti riin"]
     """
-    pass
+    lst = []
+    for player in results_string.split(","):
+        if " " in player:
+            name_score = player.rsplit(" ", 1)
+            if int(name_score[1]) >= min_result:
+                lst.append(name_score[0])
+    return lst
 
 
 def tic_tac_toe(game: list) -> int:
@@ -83,7 +89,21 @@ def tic_tac_toe(game: list) -> int:
     :param game
     :return: winning player id
     """
-    pass
+    row1 = game[0]
+    row2 = game[1]
+    row3 = game[2]
+    for i in range(3):
+        if row1[i] == row2[i] == row3[i]:
+            return row1[i]
+    for i in range(1, 3):
+        if row1[0] == row2[1] == row3[2] == i or row1[2] == row2[1] == row3[0] == i:
+            return i
+    for row in game:
+        if row == [1, 1, 1]:
+            return 1
+        if row == [2, 2, 2]:
+            return 2
+    return 0
 
 
 def rainbows(field: str, lower=False) -> int:
@@ -286,7 +306,6 @@ class Hotel:
         If there are several with the same amount of matching features, return the one with the smallest room number.
         If there is no available rooms, return None
         """
-
 
     def get_available_rooms(self) -> list:
         """Return a list of available (not booked) rooms."""
