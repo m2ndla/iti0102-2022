@@ -36,10 +36,7 @@ def close_far(a: int, b: int, c: int) -> bool:
     close_far(1, 2, 3) => False
     close_far(4, 1, 3) => True
     """
-    if (a - b == abs(1) and b - c != abs(1)) or (a - b != abs(1) and b - c == abs(1)):
-        return True
-    else:
-        return False  # broken
+    return (abs(b - a) <= 1 and abs(c - a) >= 2) or (abs(c - a) <= 1 and abs(b - a) >= 2)
 
 
 def get_names_from_results(results_string: str, min_result: int) -> list:
@@ -142,7 +139,21 @@ def longest_substring(text: str) -> str:
     abBcd => Bcd
     '' -> ''
     """
-    pass
+    longest = ""
+    char_index = {}
+    start = 0
+    for i, char in enumerate(text):
+        if char in char_index and char_index[char] >= start:
+            start = char_index[char] + 1
+        char_index[char] = i
+        longest = max(longest, text[start:i + 1], key=len)
+    return longest
+
+
+print(longest_substring("abccba"))
+print(longest_substring("babcdEFghij"))
+print(longest_substring("abBcd"))
+print(longest_substring(""))
 
 
 class Student:
