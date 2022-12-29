@@ -150,12 +150,6 @@ def longest_substring(text: str) -> str:
     return longest
 
 
-print(longest_substring("abccba"))
-print(longest_substring("babcdEFghij"))
-print(longest_substring("abBcd"))
-print(longest_substring(""))
-
-
 class Student:
     """Student class."""
 
@@ -317,18 +311,37 @@ class Hotel:
         If there are several with the same amount of matching features, return the one with the smallest room number.
         If there is no available rooms, return None
         """
+        best_room = None
+        maxcounter = 0
+        for room in sorted(self.rooms, key=lambda x: x.number):
+            if room.booked is False:
+                counter = 0
+                for feature in required_features:
+                    if feature in room.get_features():
+                        counter += 1
+                    if counter > maxcounter:
+                        best_room = room
+        return best_room
 
     def get_available_rooms(self) -> list:
         """Return a list of available (not booked) rooms."""
-        pass
+        lst = []
+        for room in self.rooms:
+            if room.booked is False:
+                lst.append(room)
+        return lst
 
     def get_rooms(self) -> list:
         """Return all the rooms (both booked and available)."""
-        pass
+        return self.rooms
 
     def get_booked_rooms(self) -> list:
         """Return all the booked rooms."""
-        pass
+        lst = []
+        for room in self.rooms:
+            if room.booked is True:
+                lst.append(room)
+        return lst
 
     def get_feature_profits(self) -> dict:
         """
@@ -348,7 +361,15 @@ class Hotel:
         'd': 200
         }
         """
-        pass
+        dct = {}
+        for room in self.rooms:
+            if room.booked is True:
+                for feature in room.get_features:
+                    if feature in dct:
+                        dct[feature] += room.price
+                    else:
+                        dct[feature] = room.price
+        return dct
 
     def get_most_profitable_feature(self) -> Optional[str]:
         """
@@ -359,7 +380,13 @@ class Hotel:
         If there are several with the same max value, return the feature which is alphabetically lower (a < z)
         If there are no features booked, return None.
         """
-        pass
+        features = self.get_feature_profits()
+        if features == {}:
+            return None
+        else:
+            sorted_alpha = dict(sorted(features.items(), key=lambda x: x[0]))
+            sorted_value = dict(sorted(sorted_alpha.items(), key=lambda x: x[1]))
+            return sorted_value
 
 
 if __name__ == '__main__':
