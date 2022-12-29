@@ -389,7 +389,7 @@ class Hotel:
         else:
             sorted_alpha = dict(sorted(features.items(), key=lambda x: x[0]))
             sorted_value = dict(sorted(sorted_alpha.items(), key=lambda x: x[1]))
-            return sorted_value
+            return sorted_value[0]
 
 
 if __name__ == '__main__':
