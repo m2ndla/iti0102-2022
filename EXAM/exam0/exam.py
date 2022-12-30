@@ -118,7 +118,12 @@ def rainbows(field: str, lower=False) -> int:
     :param field: string to search rainbows from
     :return: number of rainbows in the string
     """
-    pass
+    if not field:
+        return 0
+    if field[:7].lower() == "wobniar" or field[:7].lower() == "rainbow":
+        return 1 + rainbows(field[7:])
+    else:
+        return rainbows(field[1:])
 
 
 def longest_substring(text: str) -> str:
